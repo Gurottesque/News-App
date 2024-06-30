@@ -1,19 +1,5 @@
-import Card from "./Card";
+import Cardhomme from "./Card-home";
 
-const topCurrentNews = [
-    {
-        title: "",
-        summary: "",
-        categories: "",
-        eventDate: "",
-    },
-    {
-        title: "",
-        summary: "",
-        categories: "",
-        eventDate: "",
-    },
-]
 
 function MainPage(){
     // Funcion para mostrar los tres resultados siguientes

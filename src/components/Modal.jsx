@@ -1,4 +1,3 @@
-// Modal.jsx
 import React from 'react';
 import Colaborators from './Colaborators';
 
