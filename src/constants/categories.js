@@ -1,15 +1,5 @@
 export const NEWS_CATEGORIES = [
   {
-    "uri": "dmoz",
-    "label": "dmoz",
-    "parentUri": ""
-  },
-  {
-    "uri": "news",
-    "label": "news",
-    "parentUri": ""
-  },
-  {
     "uri": "dmoz/Arts",
     "label": "dmoz/Arts",
     "parentUri": "dmoz"

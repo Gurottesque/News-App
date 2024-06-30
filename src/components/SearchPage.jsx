@@ -10,7 +10,7 @@ function CategorySelection({ setCategory, categories }) {
     return (
         <select name="category" id="category" onChange={(e) => setCategory(e.target.value)}>
             {categories.map((category) => (
-                <option value={category.uri} key={category.uri}>{category.label}</option>
+                <option value={category.uri} key={category.uri}>{category.label.replace(/(dmoz\/)|(news\/)/, '')}</option>
             ))}
         </select>
     );
