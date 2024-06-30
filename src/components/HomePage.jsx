@@ -1,6 +1,5 @@
-import Navbar from "./Navbar"
-import Footer from "./Footer"
 
+<<<<<<< HEAD
 
 const topCurrentNews = [
     {
@@ -46,16 +45,13 @@ function MainPage(){
         <button onClick={previousPage}>Previous</button>
     </>
     );
-}
-
-function Home(){
-
-    return 
+=======
+function Home() {
+  return(
     <>
-        <Navbar />
-        <MainPage />
-        <Footer />
     </>
+  );
+>>>>>>> 8eb5fc72c630787805d30c5726787c3411ad0c52
 }
 
 export default Home;
