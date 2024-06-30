@@ -1,48 +1,46 @@
-import Footer from "./Footer"
-import Navbar from "./Navbar"
+import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 const searchResultsArray = [
-    {
-        title: "",
-        summary: "",
-        categories: "",
-        eventDate: "",
-    },
-    {
-        title: "",
-        summary: "",
-        categories: "",
-        eventDate: "",
-    },
-]
+  {
+    title: "",
+    summary: "",
+    categories: "",
+    eventDate: "",
+  },
+  {
+    title: "",
+    summary: "",
+    categories: "",
+    eventDate: "",
+  },
+];
 
 function CategorySelection() {
-    return
-    <>
-    </>
+  return;
+  <></>;
 }
 
 function SearchBar() {
-    return
-    <>
-    </>
+  return;
+  <></>;
 }
 
 function SearchResults() {
-    return
-    <>
-    </>
+  return;
+  <></>;
 }
 
-function SearchPage (){
-    return 
+function SearchPage() {
+  return (
     <>
-        <Navbar />
-        <SearchBar />
-        <CategorySelection />
-        <SearchResults />
-        <Footer />
+      <Navbar />
+      <SearchBar />
+      <CategorySelection />
+      <SearchResults />
+      <Footer />
     </>
+  );
 }
 
-export default SearchPage
+export default SearchPage;
