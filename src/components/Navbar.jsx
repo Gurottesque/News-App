@@ -98,14 +98,16 @@ function Navbar() {
     <>
       <div
         className={`flex flex-col min-h-screen ${
-          isMoon ? "bg-gray-200" : "bg-gray-800"
+          isMoon
+            ? "bg-gray-100 transition bg-opacity-0 duration-200"
+            : "bg-zinc-900 transition bg-opacity-100 duration-200"
         }`}
       >
         <header
           className={`my-3 mx-2 ${
-            !isMoon
-              ? "bg-gray-200 text-slate-800"
-              : "text-slate-200 bg-gray-800"
+            isMoon
+              ? "text-slate-200 bg-zinc-900 transition duration-200"
+              : "bg-gray-100 text-zinc-800 transition duration-200"
           } rounded-xl md:w-500`}
         >
           <div className="container mx-auto flex items-center justify-between py-4 px-4 md:px-6">
