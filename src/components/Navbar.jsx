@@ -97,7 +97,7 @@ function Navbar() {
   return (
     <>
       <div
-        className={`flex flex-col min-h-screen ${
+        className={`flex flex-col  ${
           isMoon
             ? "bg-gray-100 transition bg-opacity-0 duration-200"
             : "bg-zinc-900 transition bg-opacity-100 duration-200"
@@ -111,16 +111,16 @@ function Navbar() {
           } rounded-xl md:w-500`}
         >
           <div className="container mx-auto flex items-center justify-between py-4 px-4 md:px-6">
-            <Link to="#" className="text-2xl font-bold">
+            <Link to="/" className="text-2xl font-bold hover:text-slate-400 transition-colors">
               BootCamp News
             </Link>
             <div className="flex items-center gap-4">
               <div className="relative flex items-center max-w-md">
                 <div className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                <div className="flex items-center justify-center space-x-3">
+                <div className="flex items-center justify-end gap-10 space-x-3">
                   <div
                     onClick={toggleIcon}
-                    className="cursor-pointer transition-opacity duration-300"
+                    className="cursor-pointer duration-300 hover:scale-125 transition"
                   >
                     {isMoon ? (
                       <MoonIcon className="h-5 w-5 opacity-80" />
@@ -128,8 +128,8 @@ function Navbar() {
                       <SunIcon className="h-5 w-5 opacity-80" />
                     )}
                   </div>
-                  <SearchIcon className="h-5 w-5 cursor-pointer" />
-                  <MenuIcon className="h-5 w-5 cursor-pointer" />
+                  <SearchIcon className="h-5 w-5 cursor-pointer hover:scale-125 transition" />
+                  <MenuIcon className="h-5 w-5 cursor-pointer hover:scale-125 transition" />
                 </div>
               </div>
             </div>
