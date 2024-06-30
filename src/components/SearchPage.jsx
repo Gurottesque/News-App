@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useSearchArticleQuery } from "../api/NewsApi"
-import { NEWS_CATEGORIES } from '../constants/constants'; 
+import { NEWS_CATEGORIES } from '../constants/categories'; 
 
 function CategorySelection({ setCategory, categories }) {
     return (

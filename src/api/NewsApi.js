@@ -31,4 +31,4 @@ export const NewsApi = createApi({
 })
 
 
-export const { useGetTrendingHomeQuery, useSearchArticleQuery } = NewsApi;
+export const { useGetTrendingHomeQuery, useSearchArticleQuery, useGetRelatedArticlesQuery } = NewsApi;
