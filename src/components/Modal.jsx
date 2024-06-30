@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+// Modal.jsx
+>>>>>>> ea1b2b21334f3f2cd1fadf184d7e199ab2c86eab
 import React from 'react';
 import Colaborators from './Colaborators';
 

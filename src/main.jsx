@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
@@ -13,3 +14,16 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </ApiProvider>
   </Router>,
 )
+=======
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'
+import { BrowserRouter } from 'react-router-dom'
+import './index.css'
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+)
+>>>>>>> ea1b2b21334f3f2cd1fadf184d7e199ab2c86eab

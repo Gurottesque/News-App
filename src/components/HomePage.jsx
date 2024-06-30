@@ -1,5 +1,24 @@
+<<<<<<< HEAD
 import Cardhomme from "./Card-home";
 
+=======
+import Card from "./Card";
+
+const topCurrentNews = [
+    {
+        title: "",
+        summary: "",
+        categories: "",
+        eventDate: "",
+    },
+    {
+        title: "",
+        summary: "",
+        categories: "",
+        eventDate: "",
+    },
+]
+>>>>>>> ea1b2b21334f3f2cd1fadf184d7e199ab2c86eab
 
 function MainPage(){
     // Funcion para mostrar los tres resultados siguientes
@@ -52,4 +71,8 @@ function Home() {
   );
 }
 
+<<<<<<< HEAD
 export default Home;
+=======
+export default Home;
+>>>>>>> ea1b2b21334f3f2cd1fadf184d7e199ab2c86eab

@@ -128,9 +128,13 @@ function Navbar() {
                       <SunIcon className="h-5 w-5 opacity-80" />
                     )}
                   </div>
+<<<<<<< HEAD
                   <Link to="/search" className="text-lg font-semibold">
                       <SearchIcon className="h-5 w-5 cursor-pointer hover:scale-125 transition" />
                   </Link>
+=======
+                  <SearchIcon className="h-5 w-5 cursor-pointer hover:scale-125 transition" />
+>>>>>>> ea1b2b21334f3f2cd1fadf184d7e199ab2c86eab
                   <MenuIcon className="h-5 w-5 cursor-pointer hover:scale-125 transition" />
                 </div>
               </div>
@@ -142,4 +146,8 @@ function Navbar() {
   );
 }
 
+<<<<<<< HEAD
 export default Navbar;
+=======
+export default Navbar;
+>>>>>>> ea1b2b21334f3f2cd1fadf184d7e199ab2c86eab

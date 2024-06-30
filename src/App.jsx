@@ -1,3 +1,6 @@
+import Home from "./components/HomePage";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
 import Home from "./components/HomePage"
 import Navbar from "./components/Navbar"
 import SearchPage from "./components/SearchPage"
@@ -6,9 +9,13 @@ import ArticleDetails from "./components/ArticleDetails"
 import { Route, Routes } from "react-router-dom"
 
 function App() {
-
   return (
     <>
+      <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      <Footer />  
       <Navbar />
        
       <Routes>
@@ -18,7 +25,9 @@ function App() {
       </Routes>
       <Footer /> 
     </>
-  )
+  );
 }
+
+export default App;
 
 export default App
