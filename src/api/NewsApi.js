@@ -10,12 +10,13 @@ export const NewsApi = createApi({
     endpoints: (builder) => ({
 
 
+        // Devuelve las noticias más recientes
+        // pageNumber: numero de página pedida
+        // pageSize: numero de noticias por página
         getTrendingHome: builder.query({
-            query: () => `/event/getBreakingEvents?apiKey=${API_KEY}`
-        })
-    }),
-
-
+            query: (pageNumber = 1, pageSize = 10) => `/event/getBreakingEvents?apiKey=${API_KEY}&breakingEventsPage=${pageNumber}&breakingEventsCount=${pageSize}`
+            })
+        }),
 })
 
 
