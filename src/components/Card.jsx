@@ -5,9 +5,13 @@ import { useState } from "react";
 const Card = () => {
     const [articles, setArticles] = useState([]);
     const { data, error, isLoading } = useGetTrendingHomeQuery();
-    useEffect(() => {;
-        setArticles(data?.breakingEvents?.results);
-    },[isLoading, data])
+    const handleArticles = () =>{
+        if(data){
+            console.log(data);
+            setArticles(data.articles.results);
+            return data.articles.results;
+        }
+    }
     console.log(articles);
     return (
         <>
