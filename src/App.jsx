@@ -1,13 +1,10 @@
-import Home from "./components/HomePage"
+import Footer from "./components/Footer"
 
 function App() {
 
   return (
     <>
-     <Routes>
-        <Route path = '/' element = {<Home/>} /> 
-        <Route path = '/search' element = {<SearchPage />}/>
-      </Routes>    
+      <Footer />  
     </>
   )
 }
