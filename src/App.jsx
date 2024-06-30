@@ -1,11 +1,9 @@
-import { Route, Routes } from "react-router-dom"
-import Footer from "./components/Footer"
+import Home from "./components/HomePage"
 import Navbar from "./components/Navbar"
-import HomePage from "./components/HomePage"
 import SearchPage from "./components/SearchPage"
+import Footer from "./components/Footer"
 import ArticleDetails from "./components/ArticleDetails"
-
-
+import { Route, Routes } from "react-router-dom"
 
 function App() {
 
@@ -14,7 +12,7 @@ function App() {
       <Navbar />
        
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<Home />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/about" element={<ArticleDetails />} />
       </Routes>
@@ -24,4 +22,3 @@ function App() {
 }
 
 export default App
-
