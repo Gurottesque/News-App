@@ -1,5 +1,6 @@
 import Navbar from "./Navbar"
 import Footer from "./Footer"
+import { useGetTrendingHomeQuery } from "../api/NewsApi"
 
 
 const topCurrentNews = [
@@ -27,8 +28,11 @@ function MainPage(){
 
 function Home(){
 
+    const { data } = useGetTrendingHomeQuery();
+    console.log(data)
     return 
     <>
+
         <Navbar />
         <MainPage />
         <Footer />
