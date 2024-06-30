@@ -13,7 +13,8 @@ export const NewsApi = createApi({
         }),
 
         searchArticle: builder.query({
-            query: (keyword) => `article/getArticles?keyword=${keyword}&apiKey=${API_KEY}`
+            query: ({ keyword, category}) => `article/getArticles?keyword=${keyword}&apiKey=${API_KEY}&categoryUri=${category}`
+            
         })
     }),
 
