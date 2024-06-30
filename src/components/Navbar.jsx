@@ -1,30 +1,34 @@
 
 
 function DarkMode(){
-    return 
+    return (
     <>
     </>
+    );
 }
 
 function SearchIcon(){
-    return 
+    return ( 
     <>
     </>
+    );
 }
 
 function HomeIcon(){
-    return 
+    return ( 
     <>
     </>
+    );
 }
 
 function Navbar(){
-    return
+    return (
     <>
         <HomeIcon/>
         <SearchIcon/>
         <DarkMode/>
     </>
+    );
 }
 
 export default Navbar
