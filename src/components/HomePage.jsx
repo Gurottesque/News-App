@@ -29,11 +29,15 @@ function MainPage(){
         }
     }
   return (
-    <div className="flex flex-col md:flex-row justify-center items-center md:space-x-2 space-y-2 md:space-y-0 p-4 gap-4">
-            <Card />
-            <Card />
-            <Card />
-        </div>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
+    <Card />
+    <Card />
+    <Card />
+    <Card />
+    <Card />
+    <Card />
+  </div>
+  
   
 
     );
