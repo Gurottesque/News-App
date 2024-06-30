@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
-
 const API_KEY = '902c9441-a973-4483-ae9d-cee0a03f2bb8'
 export const NewsApi = createApi({
     reducerPath: 'api',
@@ -30,6 +29,7 @@ export const NewsApi = createApi({
         })
     })
 })
+
 
 
 export const { useGetTrendingHomeQuery, useSearchArticleQuery } = NewsApi;

@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchArticleQuery } from "../api/NewsApi"
-{/*import {NEWS_CATEGORIES} from '../constants/categories';*/}
-import Footer from './Footer';
-import Navbar from './Navbar';
-
-
+import { NEWS_CATEGORIES } from '../constants/constants'; 
 
 function CategorySelection({ setCategory, categories }) {
     return (
-        <select name="category" id="category" onChange={(e) => setCategory(e.target.value)}>
+        <select className="m-3 h-10 rounded-xl w-30 p-2" name="category" id="category" onChange={(e) => setCategory(e.target.value)}>
             {categories.map((category) => (
-                <option value={category.uri} key={category.uri}>{category.label.replace(/(dmoz\/)|(news\/)/, '')}</option>
+                <option className="w-[200px] rounded-md border border-input bg-background px-4 py-2 shadow-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring" value={category.uri} key={category.uri}>{category.label.replace(/(dmoz\/)|(news\/)/, '')}</option>
             ))}
         </select>
     );
@@ -19,8 +15,8 @@ function CategorySelection({ setCategory, categories }) {
 function SearchBar({ setSearchResults, searchTerm, setSearchTerm }) {
     return (
         <>
-            <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
-            <button onClick={setSearchResults}>Search</button>
+            <input className='bg-gray-200 shadow rounded w-96 pl-3 h-10' placeholder='Write something' type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+            <button className='bg-gray-900 text-white m-3 p-2 flex justify-center items-center rounded                                  ' onClick={setSearchResults}>Search</button>
         </>
     );
 }
@@ -35,13 +31,10 @@ function SearchResults({ results }) {
     );
 }
 
-
 function SearchPage() {
     const [searchResults, setSearchResults] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [category, setCategory] = useState('');
-
-
 
     const { data, error, isLoading } = useSearchArticleQuery({ keyword: searchTerm, category });
 
@@ -54,8 +47,10 @@ function SearchPage() {
 
     return (
         <>
-            <SearchBar className = "" setSearchResults={handleSetSearchResults} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-            {/*<CategorySelection setCategory={setCategory} categories={NEWS_CATEGORIES} />*/}
+            <div className='flex justify-center items-center'>
+                <CategorySelection setCategory={setCategory} categories={NEWS_CATEGORIES} />
+                <SearchBar className="flex" setSearchResults={handleSetSearchResults} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+            </div>
             <SearchResults results={searchResults} />
         </>
     );
