@@ -8,23 +8,26 @@ export const NewsApi = createApi({
     }),
 
     endpoints: (builder) => ({
+
         getTrendingHome: builder.query({
-            query: () => `/event/getBreakingEvents?apiKey=${API_KEY}`
+            query: (pageNumber = 1, pageSize = 20) => `/event/getBreakingEvents?apiKey=${API_KEY}&breakingEventsPage=${pageNumber}&breakingEventsCount=${pageSize}`
+            })
         }),
 
         searchArticle: builder.query({
-            query: ({ keyword, category}) => `article/getArticles?keyword=${keyword}&apiKey=${API_KEY}&categoryUri=${category}`
-            
+            query: (keyword) => `article/getArticles?keyword=${keyword}&apiKey=${API_KEY}`
         }),
-        // Devuelve las noticias relacionadas
-        // query: string de busqueda a relacionar 
+
         getRelatedArticles: builder.query({
             query: (query) => `suggestConceptsFast?prefix=${query}&lang=eng?apiKey=${API_KEY}&q=${query}`
         }),
-    }),
 
+        getArticle: builder.query({
+            query: (uri) => `article/getArticle?apiKey=${API_KEY}&articleUri=${uri}`
+          })
 
-})
+    })
+
 
 
 export const { useGetTrendingHomeQuery, useSearchArticleQuery } = NewsApi;
