@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import Modal from "./Modal";
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { useTheme } from "./ThemeContext";
 
 function Footer() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isDarkMode } = useTheme();
   return (
-    <>
-      <footer className="bg-gray-100 text-gray-500 py-4">
+    <div className={`${ isDarkMode ? "text-slate-200 bg-slate-800 transition duration-200" : "bg-white dark:bg-slate-800  text-slate-850 transition duration-200"
+    } py-4 px-2`}>
+      <footer className= {`${
+          isDarkMode ? "text-slate-200 bg-slate-850 transition duration-200" : "bg-stale-200 dark:bg-slate-950 dark:text-white text-slate-850 transition duration-200"
+        } py-4 px-2 rounded-lg items-center`}>
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
           <div className="flex space-x-6 mb-4 md:mb-0">
           <a href="#" onClick={() => setIsModalOpen(true)}>About</a>
@@ -30,7 +35,7 @@ function Footer() {
           </div>
         </div>
       </footer>
-    </>
+    </div>
   );
 }
 
