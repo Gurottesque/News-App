@@ -3,21 +3,6 @@ import Navbar from "./Navbar"
 import { useState } from "react"
 import { useSearchArticleQuery } from "../api/NewsApi"
 
-const searchResultsArray = [
-    {
-        title: "",
-        summary: "",
-        categories: "",
-        eventDate: "",
-    },
-    {
-        title: "",
-        summary: "",
-        categories: "",
-        eventDate: "",
-    },
-]
-
 const categories = [
     {
       "uri": "dmoz",
