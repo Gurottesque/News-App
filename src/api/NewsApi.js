@@ -15,7 +15,12 @@ export const NewsApi = createApi({
         // pageSize: numero de noticias por página
         getTrendingHome: builder.query({
             query: (pageNumber = 1, pageSize = 10) => `/event/getBreakingEvents?apiKey=${API_KEY}&breakingEventsPage=${pageNumber}&breakingEventsCount=${pageSize}`
-            })
+            }),
+        // Devuelve las noticias relacionadas
+        // query: string de busqueda a relacionar 
+        getRelatedArticles: builder.query({
+            query: (query) => `suggestConceptsFast?prefix=${query}&lang=eng?apiKey=${API_KEY}&q=${query}`
+        }),
         }),
 })
 
