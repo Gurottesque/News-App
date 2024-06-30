@@ -2,17 +2,14 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { useParams } from "react-router-dom";
 import CarouselImage from "./CarouselImage";
-import { useGetRelatedArticlesQuery } from "../api/NewsApi";
+import { useGetArticleQuery, useGetRelatedArticlesQuery } from "../api/NewsApi";
+import { useEffect, useState } from "react";
+import Card from "./Card";
 
-const article = {
-  title: "Sample Article Title",
-  summary: "This is a brief summary of the article.",
-  categories: ["Category1", "Category2"],
-  eventDate: "2024-06-28",
-};
-
-function RenderArticleDetails() {
-  /* const params = useParams(); */
+function RenderArticleDetails({ articleUri }) {
+  const [index, setIndex] = useState(0);
+  const [page, setPage] = useState(1);
+  const [instances, setInstances] = useState([]);
 
   // Funcion para mostrar los tres resultados siguientes
   const nextPage = () => {
@@ -26,49 +23,70 @@ function RenderArticleDetails() {
 
   // Funcion para mostrar los tres resultados anteriores
   const previousPage = () => {
-    if (index === 0 && page === 1) {
-      return;
-    } else if (index > 3) {
+    if (index > 0) {
       setIndex(index - 4);
     } else {
-      setIndex(99);
+      setIndex(96);
       setPage(page - 1);
     }
   };
 
-   // Define los keywords que quieres buscar
-   const keyword = "plane";
-   const { data, error, isLoading } = useGetRelatedArticlesQuery({ keyword });
-   console.log(data);
+  // Define los keywords que quieres buscar
+  const keyword = "plane";
+  const { data, error, isLoading } = useGetRelatedArticlesQuery({ keyword });
+
+  const {
+    data: articleData,
+    error: articleError,
+    isLoading: articleIsLoading,
+  } = useGetArticleQuery({ articleUti });
+
+  console.log(articleData)
+
+  useEffect(() => {
+    if (data && data.articles && data.articles.results) {
+      const chunkSize = 4;
+      const chunks = [];
+      for (let i = 0; i < data.articles.results.length; i += chunkSize) {
+        chunks.push(data.articles.results.slice(i, i + chunkSize));
+      }
+      setInstances(chunks);
+    }
+  }, [data]);
 
   return (
     <div>
-      <div className="flex flex-col items-center shadow-lg mx-auto p-10 justify-center md:flex-row ">
+      <div className="flex flex-col items-center shadow-lg mx-auto p-10 justify-center md:flex-row">
         <div className="p-4">
           <img src="https://via.placeholder.com/300" alt="imagen" />
         </div>
         <div className="bg-white shadow-md rounded-lg p-6 mb-4">
-          <h1 className="text-3xl font-bold mb-2">{article.title}</h1>
-          <p className="text-blue-700 mb-4">{article.summary}</p>
+          <h1 className="text-3xl font-bold mb-2">
+            {articleData ? articleData.title : "Loading..."}
+          </h1>
+          <p className="text-blue-700 mb-4">
+            {articleData ? articleData.summary : "Loading..."}
+          </p>
           <div className="flex items-center mb-4">
             <div className="text-sm text-gray-600">
-              {article.categories.map((category, index) => (
-                <span
-                  key={index}
-                  className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-                >
-                  {category}
-                </span>
-              ))}
+              {articleData &&
+                articleData.categories.map((category, index) => (
+                  <span
+                    key={index}
+                    className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+                  >
+                    {category}
+                  </span>
+                ))}
             </div>
           </div>
           <div className="text-sm text-gray-600">
-            Event Date: {article.eventDate}
+            Event Date: {articleData ? articleData.eventDate : "Loading..."}
           </div>
         </div>
       </div>
       <div>
-      <div className="w-full flex flex-row justify-center gap-12 mb-4 mt-12">
+        <div className="w-full flex flex-row justify-center gap-12 mb-4 mt-12">
           <button
             className="p-3 px-8 bg-slate-300 rounded-lg"
             onClick={() => previousPage()}
@@ -82,36 +100,32 @@ function RenderArticleDetails() {
             Next
           </button>
         </div>
-        <div className="w-full bg-cyan-200 flex flex-row justify-center">
-            
-          <CarouselImage
-            imgPath={"https://via.placeholder.com/200"}
-            title="lorem ipsum dolor sit amet consectetur adipisicing elit. "
-          />
-          <CarouselImage
-            imgPath={"https://via.placeholder.com/200"}
-            title="Hola"
-          />
-          <CarouselImage
-            imgPath={"https://via.placeholder.com/200"}
-            title="Hola"
-          />
-          <CarouselImage
-            imgPath={"https://via.placeholder.com/200"}
-            title="Hola"
-          />
-        </div>
-        
+        {instances.length > 0 && (
+          <div className="w-full bg-cyan-200 flex flex-row justify-center">
+            {instances[Math.floor(index / 4)].map((relatedArticle, idx) => (
+              <Card
+                key={idx}
+                imagePath={
+                  relatedArticle.image || "https://via.placeholder.com/200"
+                }
+                title={relatedArticle.title}
+                body={relatedArticle.body}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
 function ArticleDetails() {
+  const { articleUri } = useParams();
+
   return (
     <>
       <Navbar />
-      <RenderArticleDetails />
+      <RenderArticleDetails articleUri={articleUri} />
       <Footer />
     </>
   );
