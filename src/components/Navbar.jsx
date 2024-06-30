@@ -97,11 +97,17 @@ function Navbar() {
   return (
     <>
       <div
-        className={`flex flex-col min-h-screen bg-${
-          !isMoon ? "-gray-800 text-white" : "-slate-200 text-black"
-        } m-5`}
+        className={`flex flex-col min-h-screen ${
+          isMoon ? "bg-gray-200" : "bg-gray-800"
+        }`}
       >
-        <header className="bg-primary text-primary-foreground bg-gray-800 rounded-xl md:w-500">
+        <header
+          className={`my-3 mx-2 ${
+            !isMoon
+              ? "bg-gray-200 text-slate-800"
+              : "text-slate-200 bg-gray-800"
+          } rounded-xl md:w-500`}
+        >
           <div className="container mx-auto flex items-center justify-between py-4 px-4 md:px-6">
             <Link to="#" className="text-2xl font-bold">
               BootCamp News
