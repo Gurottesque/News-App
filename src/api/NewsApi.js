@@ -19,8 +19,7 @@ export const NewsApi = createApi({
         }),
 
         getRelatedArticles: builder.query({
-            query: (query) => 
-                `suggestConceptsFast?prefix=${query}&lang=eng&apiKey=${API_KEY}&q=${query}`
+            query: ({ keyword }) => `article/getArticles?keyword=${keyword}&apiKey=${API_KEY}`
         }),
 
         getArticle: builder.query({
@@ -31,4 +30,5 @@ export const NewsApi = createApi({
 })
 
 
-export const { useGetTrendingHomeQuery, useSearchArticleQuery } = NewsApi;
+
+export const { useGetTrendingHomeQuery, useSearchArticleQuery , useGetRelatedArticlesQuery, useGetArticleQuery } = NewsApi;
