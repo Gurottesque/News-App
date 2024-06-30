@@ -1,3 +1,4 @@
+
 import { Route, Routes } from "react-router-dom"
 import Footer from "./components/Footer"
 import Navbar from "./components/Navbar"
@@ -16,7 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/search" element={<SearchPage />} />
-        <Route path="/about" element={<ArticleDetails />} />
+        <Route path="/about/:articleUri" element={<ArticleDetails />} />
       </Routes>
       <Footer /> 
     </>
@@ -24,4 +25,3 @@ function App() {
 }
 
 export default App
-

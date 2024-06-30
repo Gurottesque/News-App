@@ -12,6 +12,10 @@ function CategorySelection({ setCategory, categories }) {
     );
 }
 
+
+
+
+
 function SearchBar({ setSearchResults, searchTerm, setSearchTerm }) {
     return (
         <>
@@ -57,6 +61,16 @@ function SearchPage() {
     );
 }
 
+function CategorySelection({ setCategory, categories }) {
+    return (
+        <select className="m-3 h-10 rounded-xl w-30 p-2" name="category" id="category" onChange={(e) => setCategory(e.target.value)}>
+            {categories.map((category) => (
+                <option className="w-[200px] rounded-md border border-input bg-background px-4 py-2 shadow-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring" value={category.uri} key={category.uri}>{category.label.replace(/(dmoz\/)|(news\/)/, '')}</option>
+            ))}
+        </select>
+    );
+}
+
 
 
 function SearchResults({ results }) {
@@ -68,7 +82,6 @@ function SearchResults({ results }) {
         </div>
     );
 }
-
 
 
 
