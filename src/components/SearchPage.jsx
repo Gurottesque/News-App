@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchArticleQuery } from "../api/NewsApi"
+import {NEWS_CATEGORIES} from '../constants/categories';
 import Footer from './Footer';
 import Navbar from './Navbar';
 
@@ -27,8 +28,8 @@ function SearchBar({ setSearchResults, searchTerm, setSearchTerm }) {
 function SearchResults({ results }) {
     return (
         <div>
-            {results && results.map(result => (
-                <div key={result.id}>{result.title}</div>
+            {results && results.map((result) => (
+                <div key={result.uri}>{result.title}</div>
             ))}
         </div>
     );
@@ -36,9 +37,9 @@ function SearchResults({ results }) {
 
 
 function SearchPage() {
-    const { dataCategorie } = useGetCategoriesQuery();
     const [searchResults, setSearchResults] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const [category, setCategory] = useState('');
 
 
 
@@ -46,7 +47,8 @@ function SearchPage() {
 
     const handleSetSearchResults = () => {
         if (data) {
-            setSearchResults(data);
+            console.log(data)
+            setSearchResults(data.articles.results);
         }
     };
 
@@ -54,7 +56,7 @@ function SearchPage() {
         <>
             <Navbar />
             <SearchBar setSearchResults={handleSetSearchResults} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-            <CategorySelection setCategory={setCategory} categories={allCategories} />
+            <CategorySelection setCategory={setCategory} categories={NEWS_CATEGORIES} />
             <SearchResults results={searchResults} />
             <Footer />
         </>

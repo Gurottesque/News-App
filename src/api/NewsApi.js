@@ -12,10 +12,10 @@ export const NewsApi = createApi({
         getTrendingHome: builder.query({
             query: (pageNumber = 1, pageSize = 20) => `/event/getBreakingEvents?apiKey=${API_KEY}&breakingEventsPage=${pageNumber}&breakingEventsCount=${pageSize}`
             })
-        }),
+        ,
 
         searchArticle: builder.query({
-            query: (keyword) => `article/getArticles?keyword=${keyword}&apiKey=${API_KEY}`
+            query: ({keyword, category}) => `article/getArticles?keyword=${keyword}&apiKey=${API_KEY}&categoryUri=${category}`
         }),
 
         getRelatedArticles: builder.query({
@@ -25,7 +25,7 @@ export const NewsApi = createApi({
         getArticle: builder.query({
             query: (uri) => `article/getArticle?apiKey=${API_KEY}&articleUri=${uri}`
           })
-
+        })
     })
 
 
