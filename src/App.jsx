@@ -1,15 +1,27 @@
-import Home from "./components/HomePage"
+import { Route, Routes } from "react-router-dom"
+import Footer from "./components/Footer"
+import Navbar from "./components/Navbar"
+import HomePage from "./components/HomePage"
+import SearchPage from "./components/SearchPage"
+import ArticleDetails from "./components/ArticleDetails"
+
+
 
 function App() {
 
   return (
     <>
-     <Routes>
-        <Route path = '/' element = {<Home/>} /> 
-        <Route path = '/search' element = {<SearchPage />}/>
-      </Routes>    
+      <Navbar />
+       
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="/about" element={<ArticleDetails />} />
+      </Routes>
+      <Footer /> 
     </>
   )
 }
 
 export default App
+
