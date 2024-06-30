@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSearchArticleQuery } from "../api/NewsApi"
 import { NEWS_CATEGORIES } from '../constants/constants'; 
 
@@ -29,12 +29,13 @@ function SearchPage() {
 
     const { data, error, isLoading } = useSearchArticleQuery({ keyword: searchTerm, category });
 
-    const handleSetSearchResults = () => {
-        if (data) {
-            console.log(data)
+    const handleSetSearchResults = useCallback(() => {
+        if (!isLoading && data && data.articles.results){
             setSearchResults(data.articles.results);
+        } else {
+          setSearchResults([]); // reset search results
         }
-    };
+    }, [data]);
 
     return (
         <>
@@ -42,7 +43,16 @@ function SearchPage() {
                 <CategorySelection setCategory={setCategory} categories={NEWS_CATEGORIES} />
                 <SearchBar className="flex" setSearchResults={handleSetSearchResults} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             </div>
-            <SearchResults results={searchResults} />
+            {
+        isLoading && <div>Loading...</div>
+      }
+      {
+        error && <div>Error: {error}</div>
+        
+      }
+      {
+        data?.articles?.results && <SearchResults results={data.articles.results} />
+      }
         </>
     );
 }
@@ -60,6 +70,6 @@ function SearchResults({ results }) {
 }
 
 
-}
+
 
 export default SearchPage;

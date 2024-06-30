@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
-const API_KEY = '902c9441-a973-4483-ae9d-cee0a03f2bb8'
+const API_KEY = '4b7e322f-c7f0-4fce-ab5d-466cdc5398aa'
 export const NewsApi = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({
@@ -14,8 +14,8 @@ export const NewsApi = createApi({
         }),
 
         searchArticle: builder.query({
-            query: (keyword) => 
-                `article/getArticles?keyword=${keyword}&apiKey=${API_KEY}`
+            query: ({keyword, category}) => 
+                `article/getArticles?keyword=${keyword}&apiKey=${API_KEY}&categoryUri=${category}`
         }),
 
         getRelatedArticles: builder.query({
