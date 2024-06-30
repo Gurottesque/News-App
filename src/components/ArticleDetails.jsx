@@ -2,7 +2,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { useParams } from "react-router-dom";
 import CarouselImage from "./CarouselImage";
-import { useGetArticleQuery, useGetRelatedArticlesQuery } from "../api/NewsApi";
+import { useGetRelatedArticlesQuery } from "../api/NewsApi";
 import { useEffect, useState } from "react";
 import Card from "./Card";
 
@@ -46,14 +46,6 @@ function RenderArticleDetails({ articleUri }) {
   /* console.log(data);
    */
 
-  const {
-    data: article,
-    error: articleError,
-    isLoading: articleIsLoading,
-  } = useGetArticleQuery({ articleUri });
-
-  console.log("Article:", articleUri)
-
   useEffect(() => {
     if (data && data.articles && data.articles.results) {
       const chunkSize = 4;
@@ -65,6 +57,8 @@ function RenderArticleDetails({ articleUri }) {
       /* console.log("Chunks:", chunks); */
     }
   }, [data]);
+
+  
 
   return (
     <div>
