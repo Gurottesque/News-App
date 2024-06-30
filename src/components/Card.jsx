@@ -1,37 +1,19 @@
-import { useEffect } from "react";
-import { useGetTrendingHomeQuery } from "../api/NewsApi";
-import { useState } from "react";
-
-const Card = () => {
-    const [articles, setArticles] = useState([]);
-    const { data, error, isLoading } = useGetTrendingHomeQuery();
-    useEffect(() => {;
-        console.log(data)
-        setArticles(data?.breakingEvents?.results);
-    },[isLoading, data])
-    console.log(articles);
+const Card = ({ title, imagePath, body }) => {
     return (
-        <>
-        {articles !== undefined ? articles.map((article) => (
-            <section key={article.uri} className="">
-                <article className="shadow-lg mx-auto relative max-w-sm group cursor-pointer">
-                    <div className="overflow-hidden">
-                        <img className="w-full h-auto transform hover:scale-110 duration-200" src={article.images[0]} alt="" />
-                    </div>
-                    <div className="p-4 my-auto pb-8 overflow-hidden">
-                        <p className="text-2xl font-semibold text-gray-800 mt-2">{article.title[Object.keys(article.title)[0]]}</p>
-                    </div>
-                    <div className="border-t pt-4 pb-4 text-center text-sm text-gray-400 uppercase tracking-widest group-hover:text-gray-600 bg-gray-50">
-                        {article.author}
-                    </div>
-                </article>
-            </section>
-            )) : null
-        }
-        </>
+    <section className="container mx-auto p-6 md:p-12 transform duration-500">
+        <article className="shadow-lg mx-auto relative max-w-sm group cursor-pointer">
+            <div className="overflow-hidden aspect-w-16 aspect-h-9 ">
+                <img className="w-full h-auto transform hover:scale-110 duration-200 " src={imagePath} alt="" />
+            </div>
+            <div className="p-4 my-auto pb-8">
+                <h1 className="text-2xl font-semibold text-gray-800 mt-2">{title}</h1>
+                <p className="text-lg text-gray-400 mt-2 leading-relaxed max-h-64 overflow-hidden">
+                    {body}
+                </p>
+            </div>
+        </article>
+    </section>
     );
   };
-
-  export default Card;
-
   
+  export default Card;

@@ -1,15 +1,16 @@
-import Navbar from "./Navbar";
-import Footer from "./Footer";
-import { useGetRelatedArticlesQuery } from "../api/NewsApi";
+import { useGetRelatedArticlesQuery, useGetArticleQuery} from "../api/NewsApi";
 import { useEffect, useState } from "react";
 import Card from "./Card";
+import { useParams } from "react-router-dom";
 
-function RenderArticleDetails({ articleUri }) {
+function RenderArticleDetails() {
   /* const params = useParams(); */
 
   const [index, setIndex] = useState(0);
   const [page, setPage] = useState(1);
   const [instances, setInstances] = useState([]);
+  const [article, setArticle] = useState([]);
+  const {articleUri} = useParams();
 
   // Funcion para mostrar los tres resultados siguientes
   const nextPage = () => {
@@ -31,11 +32,9 @@ function RenderArticleDetails({ articleUri }) {
     }
   };
 
-  // Define los keywords que quieres buscar
-  const keyword = "plane";
-  const { data, error, isLoading } = useGetRelatedArticlesQuery({ keyword });
 
   useEffect(() => {
+    const {data,error,isLoading} = useGetRelatedArticlesQuery({keyword: dataArticle.keywords[0]});
     if (data && data.articles && data.articles.results) {
       const chunkSize = 4;
       const chunks = [];
@@ -45,10 +44,15 @@ function RenderArticleDetails({ articleUri }) {
       setInstances(chunks);
       /* console.log("Chunks:", chunks); */
     }
-  }, [data]);
+  }, []);
 
   
-
+  useEffect(() => {
+    const {dataArticle, errorArticle, isLoadingArticle} = useGetArticleQuery(articleUri);
+    setArticle(dataArticle);
+    console.log(dataArticle);
+    
+  }, []);
   return (
     <div>
       <div className="flex flex-col items-center shadow-lg mx-auto p-10 justify-center md:flex-row ">
@@ -112,9 +116,7 @@ function RenderArticleDetails({ articleUri }) {
 function ArticleDetails(articleUri) {
   return (
     <>
-      <Navbar />
       <RenderArticleDetails articleUri={articleUri}/>
-      <Footer />
     </>
   );
 }
