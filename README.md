@@ -1,6 +1,6 @@
 # Navegation Bar
 
-Press the Sun/Moon icon to change the theme!
+*Press the Sun/Moon icon to change the theme!*
 
 Dark Mode
 ![Dark Mode](https://github.com/Gurottesque/News-App/assets/87156289/8b0141e7-6bf5-41a9-9609-cc2ea7bebf51)
