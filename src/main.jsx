@@ -13,6 +13,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <App />
     </ApiProvider>
   </Router>,
+<<<<<<< HEAD
 )
 =======
 import React from 'react'
@@ -27,3 +28,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </BrowserRouter>,
 )
 >>>>>>> ea1b2b21334f3f2cd1fadf184d7e199ab2c86eab
+=======
+)
+>>>>>>> 9ded50788140697f07ac207ee1c774ffadf3b9c2

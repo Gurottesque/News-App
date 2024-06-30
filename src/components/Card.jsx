@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9ded50788140697f07ac207ee1c774ffadf3b9c2
 const Card = ({ title, imagePath, body }) => {
     return (
     <section className="container mx-auto p-6 md:p-12 transform duration-500">
@@ -17,6 +20,7 @@ const Card = ({ title, imagePath, body }) => {
     );
   };
   
+<<<<<<< HEAD
   export default Card;
 =======
 const Card = () => {
@@ -39,3 +43,6 @@ const Card = () => {
 
 export default Card;
 >>>>>>> ea1b2b21334f3f2cd1fadf184d7e199ab2c86eab
+=======
+  export default Card;
+>>>>>>> 9ded50788140697f07ac207ee1c774ffadf3b9c2
