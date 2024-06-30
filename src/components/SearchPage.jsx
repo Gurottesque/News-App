@@ -23,9 +23,9 @@ function CategorySelection() {
 }
 
 function SearchBar() {
-    return
-    <>
-    </>
+    return(
+    <h1>holsa</h1>
+    )
 }
 
 function SearchResults() {
@@ -35,14 +35,15 @@ function SearchResults() {
 }
 
 function SearchPage (){
-    return 
+    return (
     <>
-        <Navbar />
+     
         <SearchBar />
-        <CategorySelection />
-        <SearchResults />
-        <Footer />
+   
+        
+  
     </>
+    )
 }
 
 export default SearchPage
