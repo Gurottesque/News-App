@@ -3,7 +3,7 @@ import Navbar from "./Navbar"
 
 const searchResultsArray = [
     {
-        title: "",
+        title: "AaS",
         summary: "",
         categories: "",
         eventDate: "",
