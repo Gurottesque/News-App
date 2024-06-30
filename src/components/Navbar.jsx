@@ -1,30 +1,131 @@
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
-
-function DarkMode(){
-    return 
-    <>
-    </>
+function MoonIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+    </svg>
+  );
 }
 
-function SearchIcon(){
-    return 
-    <>
-    </>
+function SunIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2" />
+      <path d="M12 20v2" />
+      <path d="m4.93 4.93 1.41 1.41" />
+      <path d="m17.66 17.66 1.41 1.41" />
+      <path d="M2 12h2" />
+      <path d="M20 12h2" />
+      <path d="m6.34 17.66-1.41 1.41" />
+      <path d="m19.07 4.93-1.41 1.41" />
+    </svg>
+  );
 }
 
-function HomeIcon(){
-    return 
-    <>
-    </>
+function SearchIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="11" cy="11" r="8" />
+      <path d="m21 21-4.3-4.3" />
+    </svg>
+  );
 }
 
-function Navbar(){
-    return
-    <>
-        <HomeIcon/>
-        <SearchIcon/>
-        <DarkMode/>
-    </>
+function MenuIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="4" x2="20" y1="12" y2="12" />
+      <line x1="4" x2="20" y1="6" y2="6" />
+      <line x1="4" x2="20" y1="18" y2="18" />
+    </svg>
+  );
 }
 
-export default Navbar
+function Navbar() {
+  const [isMoon, setIsMoon] = useState(true);
+
+  const toggleIcon = () => {
+    setIsMoon(!isMoon);
+  };
+  return (
+    <>
+      <div className="flex flex-col min-h-screen text-white m-5">
+        <header className="bg-primary text-primary-foreground bg-gray-800 rounded-xl">
+          <div className="container mx-auto flex items-center justify-between py-4 px-4 md:px-6">
+            <Link to="#" className="text-2xl font-bold">
+              BootCamp News
+            </Link>
+            <div className="flex items-center gap-4">
+              <div className="relative flex items-center max-w-md">
+                <div className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                <div className="flex items-center justify-center space-x-3">
+                  <div
+                    onClick={toggleIcon}
+                    className="cursor-pointer transition-opacity duration-300"
+                  >
+                    {isMoon ? (
+                      <MoonIcon className="h-5 w-5 opacity-80" />
+                    ) : (
+                      <SunIcon className="h-5 w-5 opacity-80" />
+                    )}
+                  </div>
+                  <SearchIcon className="h-5 w-5 cursor-pointer" />
+                  <MenuIcon className="h-5 w-5 cursor-pointer" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+    </>
+  );
+}
+
+export default Navbar;
