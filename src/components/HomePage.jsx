@@ -44,7 +44,7 @@ function MainPage(){
     }
     return (
     <>
-        <div className={`${isDarkMode ? "bg-slate-950 text-slate-200" : "bg-gray-100 dark:bg-slate-950 dark:text-slate-200 text-slate-950"} p-4`}>
+        <div className={`${isDarkMode ? "bg-slate-950 text-slate-200" : "bg-gray-100  text-slate-950"} p-4`}>
         <h1 className="flex items-center justify-center text-5xl font-bold leading-loose">Breaking News</h1>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 max-w-screen-2xl m-auto">
             <CardHome />
