@@ -2,6 +2,8 @@
 
 -Estilizar pagina de buscado
 
+-Corregir bug en la pagina de buscado al filtrar por categorias (no se aplica el filtro)
+
 -Corregir bug en la pagina de "about" al entrar en una Uri
 ![image](https://github.com/Gurottesque/News-App/assets/170020272/e04e2eee-4b86-4114-8cf9-7ecc73af22c0)
 
