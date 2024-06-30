@@ -8,10 +8,12 @@ export const NewsApi = createApi({
     }),
 
     endpoints: (builder) => ({
-
-
         getTrendingHome: builder.query({
             query: () => `/event/getBreakingEvents?apiKey=${API_KEY}`
+        }),
+
+        searchArticle: builder.query({
+            query: (keyword) => `article/getArticles?keyword=${keyword}&apiKey=${API_KEY}`
         })
     }),
 
@@ -19,4 +21,4 @@ export const NewsApi = createApi({
 })
 
 
-export const { useGetTrendingHomeQuery } = NewsApi;
+export const { useGetTrendingHomeQuery, useSearchArticleQuery } = NewsApi;
