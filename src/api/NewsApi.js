@@ -15,7 +15,12 @@ export const NewsApi = createApi({
         searchArticle: builder.query({
             query: ({ keyword, category}) => `article/getArticles?keyword=${keyword}&apiKey=${API_KEY}&categoryUri=${category}`
             
-        })
+        }),
+        // Devuelve las noticias relacionadas
+        // query: string de busqueda a relacionar 
+        getRelatedArticles: builder.query({
+            query: (query) => `suggestConceptsFast?prefix=${query}&lang=eng?apiKey=${API_KEY}&q=${query}`
+        }),
     }),
 
 
