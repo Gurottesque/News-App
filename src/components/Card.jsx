@@ -6,6 +6,7 @@ const Card = () => {
     const [articles, setArticles] = useState([]);
     const { data, error, isLoading } = useGetTrendingHomeQuery();
     useEffect(() => {;
+        console.log(data)
         setArticles(data?.breakingEvents?.results);
     },[isLoading, data])
     console.log(articles);
