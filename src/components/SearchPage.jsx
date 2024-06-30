@@ -21,15 +21,6 @@ function SearchBar({ setSearchResults, searchTerm, setSearchTerm }) {
     );
 }
 
-function SearchResults({ results }) {
-    return (
-        <div>
-            {results && results.map((result) => (
-                <div key={result.uri}>{result.title}</div>
-            ))}
-        </div>
-    );
-}
 
 function SearchPage() {
     const [searchResults, setSearchResults] = useState([]);
@@ -54,6 +45,21 @@ function SearchPage() {
             <SearchResults results={searchResults} />
         </>
     );
+}
+
+
+
+function SearchResults({ results }) {
+    return (
+        <div>
+            {results && results.map((result) => (
+                <div key={result.uri}>{result.title}</div>
+            ))}
+        </div>
+    );
+}
+
+
 }
 
 export default SearchPage;
