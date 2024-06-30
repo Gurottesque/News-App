@@ -1,7 +1,5 @@
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import { useParams } from "react-router-dom";
-import CarouselImage from "./CarouselImage";
 import { useGetRelatedArticlesQuery } from "../api/NewsApi";
 import { useEffect, useState } from "react";
 import Card from "./Card";
