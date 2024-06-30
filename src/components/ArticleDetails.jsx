@@ -13,12 +13,13 @@ function RenderArticleDetails(){
 }
 
 function ArticleDetails() {
-    return 
+    return (
     <>
         <Navbar />
         <RenderArticleDetails />
         <Footer />
     </>
+    );
 }
 
 export default ArticleDetails

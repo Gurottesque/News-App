@@ -17,25 +17,35 @@ const searchResultsArray = [
 ]
 
 function CategorySelection() {
-    return
-    <>
-    </>
+    return (
+        <>
+
+        </>
+    );
 }
 
 function SearchBar() {
-    return
+    return (
     <>
+
     </>
+    );
 }
 
 function SearchResults() {
-    return
+    return (
     <>
+    <div className="flex flex-col md:flex-row justify-center items-center md:space-x-2 space-y-2 md:space-y-0 p-4 gap-4">
+            <Card />
+            <Card />
+            <Card />
+        </div>
     </>
+    );
 }
 
 function SearchPage (){
-    return 
+    return  (
     <>
         <Navbar />
         <SearchBar />
@@ -43,6 +53,7 @@ function SearchPage (){
         <SearchResults />
         <Footer />
     </>
+    );
 }
 
 export default SearchPage
