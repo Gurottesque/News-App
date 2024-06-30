@@ -52,13 +52,8 @@ const Card = () => {
                     Super creative and colorful illustrations by Matheus Lopes. Check out more of his amazing artworks in his portfolio.
                 </p>
             </div>
-            <div class="border-t pt-4 pb-4 text-center text-sm text-gray-400 uppercase tracking-widest group-hover:text-gray-600 bg-gray-50">
-                Matheus Lopes
-            </div>
         </article>
     </section>
-    
-    
     );
   };
 
