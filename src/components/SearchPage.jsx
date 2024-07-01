@@ -1,8 +1,11 @@
+
 import React, { useState, useEffect, useCallback } from "react";
 import { useSearchArticleQuery } from "../api/NewsApi";
 import { NEWS_CATEGORIES } from "../constants/categories";
 import Card from "./Card";
+import { Link } from 'react-router-dom';
 import { useTheme } from "./ThemeContext.jsx";
+
 
 function CategorySelection({ setCategory, categories }) {
   const { isDarkMode } = useTheme();
@@ -150,29 +153,23 @@ function SearchResults({ results }) {
       setIndex(99);
       setPage(page - 1);
     }
-  };
-  return (
-    <div
-      className={`grid grid-cols-3 ${
-        isDarkMode
-          ? "text-slate-200 bg-slate-800 transition duration-200"
-          : "bg-white text-slate-850 transition duration-200"
-      }`}
-    >
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-1 p-10 max-w-screen-2xl m-auto col-span-3">
-        {results &&
-          results.map((result) => (
-            <div key={result.uri}>
-              <Card
-                title={`${result.title}`}
-                imagePath={`${result.image}`}
-                body={null}
-              />
-            </div>
-          ))}
-      </div>
-    </div>
-  );
+    return (
+        <div className="grid grid-cols-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-1 p-10 max-w-screen-2xl m-auto col-span-3">
+             {results && results.map((result) => (
+               <div key = {result.uri} >
+                <Link to={`/about/${result.uri}`} key={result.uri}>
+                 <Card
+                 title= {`${result.title}`}
+                 imagePath= {`${result.image}`}
+                 body={null} />
+                </Link>
+               </div>   
+               ))}
+           </div>
+        </div>
+    );
+
 }
 
 export default SearchPage;
