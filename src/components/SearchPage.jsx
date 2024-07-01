@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useSearchArticleQuery } from "../api/NewsApi"
 import { NEWS_CATEGORIES } from '../constants/categories'; 
+import Card from './Card';
 
 function CategorySelection({ setCategory, categories }) {
     return (
@@ -11,10 +12,6 @@ function CategorySelection({ setCategory, categories }) {
         </select>
     );
 }
-
-
-
-
 
 function SearchBar({ setSearchResults, searchTerm, setSearchTerm }) {
     return (
@@ -31,19 +28,51 @@ function SearchPage() {
     const [searchTerm, setSearchTerm] = useState('');
     const [category, setCategory] = useState('');
 
-    const { data, error, isLoading } = useSearchArticleQuery({ keyword: searchTerm, category });
+    const [index, setIndex] = useState(0);
 
-    const handleSetSearchResults = useCallback(() => {
+    const [page, setPage] = useState(1);    
+
+    const nArticles = 9;
+    
+    // Funcion para mostrar los tres resultados siguientes
+    const nextPage = () => {
+        if(index <= (99-nArticles)){
+            setIndex(index+nArticles);
+        }else{
+            setIndex(0);
+            setPage(page+1)
+        }
+    }
+
+    // Funcion para mostrar los tres resultados anteriores
+    const previousPage = () => {
+        if(index === 0 && page === 1){
+            return;
+        }
+        else if(index >= nArticles ){
+            setIndex(index-nArticles);
+        }else{
+            setIndex(99);
+            setPage(page-1)
+        }
+    }
+
+    const { data, error, isLoading } = useSearchArticleQuery({ searchTerm, category, page });
+
+    // const handleSetSearchResults = useCallback() => { // Linea cambiada para implementar paginado
+    const handleSetSearchResults = useEffect(() => {
         if (!isLoading && data && data.articles.results){
-            setSearchResults(data.articles.results);
+            setSearchResults(data.articles.results.slice(index, index+nArticles));
         } else {
           setSearchResults([]); // reset search results
         }
-    }, [data]);
+    }, [data, index, page]);
 
     return (
+
         <>
-            <div className='flex justify-center items-center'>
+            <div className='flex justify-center items-center '>
+                <h1 className= "text-xl font-bold mb-4 mt-4 mr-2"> Filters</h1>
                 <CategorySelection setCategory={setCategory} categories={NEWS_CATEGORIES} />
                 <SearchBar className="flex" setSearchResults={handleSetSearchResults} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             </div>
@@ -58,17 +87,42 @@ function SearchPage() {
         data?.articles?.results && <SearchResults results={data.articles.results} />
       }
         </>
+
     );
 }
 
 
 
 function SearchResults({ results }) {
+
+    const [category, setCategory] = useState('');
+    const { data, error, isLoading } = useSearchArticleQuery({category });
+
+
+    // Funcion para mostrar los tres resultados anteriores
+    const previousPage = () => {
+        if(index === 0 && page === 1){
+            return;
+        }
+        else if(index > 2){
+            setIndex(index-3);
+        }else{
+            setIndex(99);
+            setPage(page-1)
+        }
+    }
     return (
-        <div>
-            {results && results.map((result) => (
-                <div key={result.uri}>{result.title}</div>
-            ))}
+        <div className="grid grid-cols-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-1 p-10 max-w-screen-2xl m-auto col-span-3">
+             {results && results.map((result) => (
+               <div key = {result.uri} >
+                 <Card
+                 title= {`${result.title}`}
+                 imagePath= {`${result.image}`}
+                 body={null} />
+               </div>   
+               ))}
+           </div>
         </div>
     );
 }

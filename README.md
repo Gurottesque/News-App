@@ -1,7 +1,5 @@
 # TO DO:
 
--Arreglar articulos en main: Joseph, richangel, Ramiro
-
 -Estilizar pagina de buscado: Burbano, juank, tania, juandrez, arce
 
 -Estilizar pagina de detalles: Mateo, isa, Franki, marin, sefase
