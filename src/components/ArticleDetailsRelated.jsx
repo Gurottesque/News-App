@@ -8,11 +8,12 @@ function ArticleDetailsRelated({ keyword }) {
   const [instances, setInstances] = useState([]);
   const navigate = useNavigate();
 
+  const nArticles = 4; // Número de artículos recomendados a mostrar
   const { data, error, isLoading } = useGetRelatedArticlesQuery(keyword);
 
   useEffect(() => {
     if (data && data.articles && data.articles.results) {
-      const chunkSize = 4;
+      const chunkSize = nArticles;
       const chunks = [];
       for (let i = 0; i < data.articles.results.length; i += chunkSize) {
         chunks.push(data.articles.results.slice(i, i + chunkSize));
@@ -22,11 +23,11 @@ function ArticleDetailsRelated({ keyword }) {
   }, [data]);
 
   const nextPage = () => {
-    setIndex((prevIndex) => (prevIndex + 4) % data.articles.results.length);
+    setIndex((prevIndex) => (prevIndex + nArticles) % data.articles.results.length);
   };
 
   const previousPage = () => {
-    setIndex((prevIndex) => (prevIndex - 4 + data.articles.results.length) % data.articles.results.length);
+    setIndex((prevIndex) => (prevIndex - nArticles + data.articles.results.length) % data.articles.results.length);
   };
 
   const handleCardClick = (articleUri) => {
@@ -54,7 +55,7 @@ function ArticleDetailsRelated({ keyword }) {
         </div>
         {instances.length > 0 && (
           <div className="w-full flex flex-row justify-center">
-            {instances[Math.floor(index / 4)].map((relatedArticle, idx) => (
+            {instances[Math.floor(index / nArticles)].map((relatedArticle, idx) => (
               <div key={idx} onClick={() => handleCardClick(relatedArticle.uri)}>
                 <Card
                   imagePath={relatedArticle.image || "https://via.placeholder.com/200"}
