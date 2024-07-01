@@ -1,9 +1,12 @@
-import { Route, Routes } from "react-router-dom";
-import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
-import HomePage from "./components/HomePage";
-import SearchPage from "./components/SearchPage";
-import ArticleDetails from "./components/ArticleDetails";
+
+import { Route, Routes } from "react-router-dom"
+import Footer from "./components/Footer"
+import Navbar from "./components/Navbar"
+import HomePage from "./components/HomePage"
+import SearchPage from "./components/SearchPage"
+import ArticleDetails from "./components/ArticleDetails"
+
+
 
 function App() {
   return (
@@ -19,6 +22,4 @@ function App() {
   );
 }
 
-export default App;
-
-
+export default App
