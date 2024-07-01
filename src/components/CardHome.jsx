@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 const CardHome = () => {
     const [articles, setArticles] = useState([]);
     const { data, error, isLoading } = useGetTrendingHomeQuery();
-    useEffect(() => {;
+    useEffect(() => {
         console.log(data)
-        setArticles(data?.breakingEvents?.results);
+        setArticles(data?.recentActivityArticles?.activity);
     },[isLoading, data])
     console.log(articles);
     return (
@@ -18,10 +18,10 @@ const CardHome = () => {
             <section key={article.uri} className="flex flex-1">
                 <article className="shadow-lg mx-auto relative max-w-sm group cursor-pointer">
                     <div className="overflow-hidden">
-                        <img className="w-full h-auto transform hover:scale-110 duration-200" src={article.images[0]} alt="" />
+                        <img className="w-full h-auto transform hover:scale-110 duration-200" src={article.image} alt="" />
                     </div>
                     <div className="p-4 my-auto pb-8 overflow-hidden">
-                        <p className="text-2xl font-semibold text-gray-800 mt-2">{article.title[Object.keys(article.title)[0]]}</p>
+                        <p className="text-2xl font-semibold text-gray-800 mt-2">{article.title}</p>
                     </div>
                 </article>
             </section>
