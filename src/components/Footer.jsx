@@ -8,23 +8,23 @@ function Footer() {
     <>
       <footer className="bg-gray-100 text-gray-500 py-4">
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
-          <div className="flex space-x-6 mb-4 md:mb-0">
+          <div className="flex space-x-0 mb-4 md:mb-0 \space-y-4 ">
           <a href="#" onClick={() => setIsModalOpen(true)}>About</a>
           <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-            <a className="hover:text-sky-700">Contact</a>
+            <a className="hover:text-sky-700 pl-5 pr-5">Contact</a>
             <a className="hover:text-sky-700">Privacy</a>
           </div>
           <div className="text-center mb-4 md:mb-0">
             &copy; 2024 News Hub. All rights reserved.
           </div>
-          <div className="mt-4 flex space-x-6">
-              <a href="#" className="hover:text-gray-700">
+          <div className="mt-4 flex space-x-6 m-4">
+              <a href="#" className="duration-300 hover:text-[#1877F2]">
                   <FaFacebook className="h-6 w-6" />
                 </a>
-                <a href="#" className="hover:text-gray-700">
+                <a href="#" className="duration-300 hover:text-[#1DA1F2]">
                   <FaTwitter className="h-6 w-6" />
                 </a>
-                <a href="#" className="hover:text-gray-700">
+                <a href="#" className="duration-300 hover:text-[#E4405F]">
                   <FaInstagram className="h-6 w-6" />
                 </a>
           </div>
