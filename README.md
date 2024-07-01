@@ -1,9 +1,5 @@
 # TO DO:
 
--Estilizar pagina de buscado: Burbano, juank, tania, juandrez, arce
-
--Estilizar pagina de detalles: Mateo, isa, Franki, marin, sefase
-
 -Agregar paginado tanto en el main como en la pagina de busqueda: Jeff, 
 
 -Agregar modo dia/noche: Juan cano, burbano, Sebastian, cristian
