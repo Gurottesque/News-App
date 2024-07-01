@@ -49,7 +49,7 @@ const CardHome = () => {
         ? articles.map((article) => (
             <div>
               <div>
-                <Link to={`/about/${article.uri}`} key={article.uri}>
+                <Link to={`/about/${article.uri}`} key={article.uri}> 
                   <section key={article.uri} className="flex flex-1">
                     <article className="shadow-lg mx-auto relative max-w-sm group cursor-pointer">
                       <div className="overflow-hidden">

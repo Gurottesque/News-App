@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useSearchArticleQuery } from "../api/NewsApi"
 import { NEWS_CATEGORIES } from '../constants/categories'; 
 import Card from './Card';
+import { Link } from 'react-router-dom';
 
 function CategorySelection({ setCategory, categories }) {
     return (
@@ -116,10 +117,12 @@ function SearchResults({ results }) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-1 p-10 max-w-screen-2xl m-auto col-span-3">
              {results && results.map((result) => (
                <div key = {result.uri} >
+                <Link to={`/about/${result.uri}`} key={result.uri}>
                  <Card
                  title= {`${result.title}`}
                  imagePath= {`${result.image}`}
                  body={null} />
+                </Link>
                </div>   
                ))}
            </div>
