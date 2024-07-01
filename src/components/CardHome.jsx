@@ -62,7 +62,7 @@ const CardHome = () => {
                         </LazyLoad>
                       </div>
                       <div className="p-4 my-auto pb-8 overflow-hidden">
-                        <p className="text-2xl font-semibold text-gray-800 mt-2">
+                        <p className="text-2xl font-semibold mt-2">
                           {article.title}
                         </p>
                       </div>
