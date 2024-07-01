@@ -1,19 +1,52 @@
-export default function Colaborators({ colaborator }) {
+// src/components/Colaborators.jsx
+import React, { useEffect, useState } from 'react';
+
+function Colaborators({ colaborator }) {
+  const [userData, setUserData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
+
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch(`https://api.github.com/users/${colaborator}`, {
+          headers: {
+            Authorization: `token ${GITHUB_TOKEN}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        setUserData(data);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchUserData();
+  }, [colaborator]);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error loading user data</p>;
+
   return (
-    <button
-      type="button"
-      className="relative inline-flex items-center w-full px-4 py-2 rounded-md text-sm font-medium  border-gray-50 rounded-t-lg hover:bg-gray-100  focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700  dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white"
+    <a
+      href={`https://github.com/${userData.login}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center p-2 bg-gray-100 hover:bg-gray-200 rounded-md transition duration-200"
     >
-      <svg
-        className="w-3.5 h-3.5 me-2"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="currentColor"
-        viewBox="0 0 20 20"
-      >
-        <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
-      </svg>
-      {colaborator}
-    </button>
+      <img src={userData.avatar_url} alt={userData.login} className="w-8 h-8 rounded-full" />
+      <span className="ml-2 text-gray-700 truncate max-w-xs">{userData.login}</span>
+    </a>
   );
 }
+
+export default Colaborators;
