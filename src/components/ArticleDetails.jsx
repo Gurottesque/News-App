@@ -1,28 +1,24 @@
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { useParams } from "react-router-dom";
+import CarouselImage from "./CarouselImage";
 import { useGetRelatedArticlesQuery } from "../api/NewsApi";
 import { useEffect, useState } from "react";
 import Card from "./Card";
 
-function ArticleDetails(articleUri) {
-  return (
-    <>
-      <Navbar />
-      <RenderArticleDetails articleUri={articleUri}/>
-      <Footer />
-    </>
-  );
-}
+const article = {
+  title: "Sample Article Title",
+  summary: "This is a brief summary of the article.",
+  categories: ["Category1", "Category2"],
+  eventDate: "2024-06-28",
+};
 
-function RenderArticleDetails() {
+function RenderArticleDetails({ articleUri }) {
   /* const params = useParams(); */
 
   const [index, setIndex] = useState(0);
   const [page, setPage] = useState(1);
   const [instances, setInstances] = useState([]);
-  const [article, setArticle] = useState([]);
-  const {articleUri} = useParams();
 
   // Funcion para mostrar los tres resultados siguientes
   const nextPage = () => {
@@ -44,9 +40,13 @@ function RenderArticleDetails() {
     }
   };
 
+  // Define los keywords que quieres buscar
+  const keyword = "plane";
+  const { data, error, isLoading } = useGetRelatedArticlesQuery({ keyword });
+  console.log(data);
+   
 
   useEffect(() => {
-    const {data,error,isLoading} = useGetRelatedArticlesQuery({keyword: dataArticle.keywords[0]});
     if (data && data.articles && data.articles.results) {
       const chunkSize = 4;
       const chunks = [];
@@ -54,17 +54,10 @@ function RenderArticleDetails() {
         chunks.push(data.articles.results.slice(i, i + chunkSize));
       }
       setInstances(chunks);
-      /* console.log("Chunks:", chunks); */
+      console.log("Chunks:", chunks);
     }
-  }, []);
+  }, [data]);
 
-  
-  useEffect(() => {
-    const {dataArticle, errorArticle, isLoadingArticle} = useGetArticleQuery(articleUri);
-    setArticle(dataArticle);
-    console.log(dataArticle);
-    
-  }, []);
   return (
     <div>
       <div className="flex flex-col items-center shadow-lg mx-auto p-10 justify-center md:flex-row ">
@@ -122,6 +115,14 @@ function RenderArticleDetails() {
         )}
       </div>
     </div>
+  );
+}
+
+function ArticleDetails() {
+  return (
+    <>
+      <RenderArticleDetails />
+    </>
   );
 }
 
