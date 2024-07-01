@@ -1,19 +1,19 @@
-import Navbar from "./Navbar";
-import Footer from "./Footer";
-import { useParams } from "react-router-dom";
-import { useGetRelatedArticlesQuery } from "../api/NewsApi";
-import { useEffect, useState } from "react";
-import Card from "./Card";
+import { useGetArticleQuery } from "../api/NewsApi";
+import ArticleDetailsRelated from "./ArticleDetailsRelated";
 
-function ArticleDetails(articleUri) {
-  return (
-    <>
-      <Navbar />
-      <RenderArticleDetails articleUri={articleUri}/>
-      <Footer />
-    </>
-  );
-}
+function ArticleDetails({ articleUri }) {
+  const uri = articleUri;
+  const uriData = useGetArticleQuery({ uri });
+
+  let articleDataInfo; // Se declara articleDataInfoGlobalmente
+
+  if (uriData.isLoading) {
+    return <h1>Loading...</h1>;
+  } else {
+    articleDataInfo = uriData.data[uri].info;
+    /* console.log("uriDAta", articleDataInfo); */
+  }
+
 
 function RenderArticleDetails() {
   /* const params = useParams(); */
@@ -63,69 +63,26 @@ const previousPage = () => {
     }
   }, [ index, page ]);
 
-  
-  useEffect(() => {
-    const {dataArticle, errorArticle, isLoadingArticle} = useGetArticleQuery(articleUri);
-    setArticle(dataArticle);
-    console.log(dataArticle);
-    
-  }, []);
   return (
     <div>
-      <div className="flex flex-col items-center shadow-lg mx-auto p-10 justify-center md:flex-row ">
+      <div className="flex flex-col items-center shadow-lg mx-auto p-10 justify-center ">
         <div className="p-4">
-          <img src="https://via.placeholder.com/300" alt="imagen" />
+          <img src={articleDataInfo.image} alt="imagen" />
         </div>
         <div className="bg-white shadow-md rounded-lg p-6 mb-4">
-          <h1 className="text-3xl font-bold mb-2">{article.title}</h1>
-          <p className="text-blue-700 mb-4">{article.summary}</p>
-          <div className="flex items-center mb-4">
-            <div className="text-sm text-gray-600">
-              {article.categories.map((category, index) => (
-                <span
-                  key={index}
-                  className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-                >
-                  {category}
-                </span>
-              ))}
-            </div>
-          </div>
+          <h1 className="text-5xl font-bold text-slate-950 mb-2">
+            {articleDataInfo.title}
+          </h1>
+          <p className="text-lg text-gray-900 mb-4 mt-4">
+            {articleDataInfo.body}
+          </p>
           <div className="text-sm text-gray-600">
-            Event Date: {article.eventDate}
+            Date: {articleDataInfo.date}
           </div>
         </div>
       </div>
-      <div>
-        <div className="w-full flex flex-row justify-center gap-12 mb-4 mt-12">
-          <button
-            className="p-3 px-8 bg-slate-300 rounded-lg"
-            onClick={() => previousPage()}
-          >
-            Prev
-          </button>
-          <button
-            className="p-3 px-8 bg-blue-500 rounded-lg"
-            onClick={() => nextPage()}
-          >
-            Next
-          </button>
-        </div>
-        {instances.length > 0 && (
-          <div className="w-full bg-cyan-200 flex flex-row justify-center">
-            {instances[Math.floor(index / 4)].map((relatedArticle, idx) => (
-              <Card
-                key={idx}
-                imagePath={
-                  relatedArticle.image || "https://via.placeholder.com/200"
-                }
-                title={relatedArticle.title}
-                body={relatedArticle.body}
-              />
-            ))}
-          </div>
-        )}
-      </div>
+
+      <ArticleDetailsRelated keyword={articleDataInfo.title} />
     </div>
   );
 }
