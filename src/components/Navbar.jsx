@@ -1,6 +1,7 @@
 
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useTheme } from './ThemeContext.jsx';
 
 function MoonIcon(props) {
   return (
@@ -93,53 +94,40 @@ function MenuIcon(props) {
 
 function Navbar() {
   const [isMoon, setIsMoon] = useState(true);
-
-  const toggleIcon = () => {
-    setIsMoon(!isMoon);
-  };
+  const { isDarkMode, toggleTheme } = useTheme();
   return (
     <>
-      <div
-        className={`flex flex-col  ${
-          isMoon
-            ? "bg-gray-100 transition bg-opacity-0 duration-200"
-            : "bg-zinc-900 transition bg-opacity-100 duration-200"
-        }`}
-      >
+      <div className={`${
+          isDarkMode ? "text-slate-200 bg-slate-800 transition duration-200" : "bg-white text-slate-850 transition duration-200"
+        } py-4 px-2 transition-colors`} >
         <header
-          className={`my-3 mx-2 ${
-            isMoon
-              ? "text-slate-200 bg-zinc-900 transition duration-200"
-              : "bg-gray-100 text-zinc-800 transition duration-200"
-          } rounded-xl md:w-500`}
-        >
-          <div className="container mx-auto flex items-center justify-between py-4 px-4 md:px-6">
-            <Link to="/" className="text-2xl font-bold hover:text-slate-400 transition-colors">
-              BootCamp News
-            </Link>
-            <div className="flex items-center gap-4">
-              <div className="relative flex items-center max-w-md">
-                <div className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                <div className="flex items-center justify-end gap-10 space-x-3">
-                  <div
-                    onClick={toggleIcon}
-                    className="cursor-pointer duration-300 hover:scale-125 transition"
-                  >
-                    {isMoon ? (
-                      <MoonIcon className="h-5 w-5 opacity-80" />
-                    ) : (
-                      <SunIcon className="h-5 w-5 opacity-80" />
-                    )}
-                  </div>
-                  <Link to="/search" className="text-lg font-semibold">
-                      <SearchIcon className="h-5 w-5 cursor-pointer hover:scale-125 transition" />
-                  </Link>
-                  <MenuIcon className="h-5 w-5 cursor-pointer hover:scale-125 transition" />
+        className={`${
+          isDarkMode ? "text-slate-200 bg-slate-950 transition duration-200" : "bg-gray-950 text-slate-200 transition duration-200"
+        } rounded-xl md:w-500 transition-colors`}
+      >
+        <div className="container mx-auto flex items-center justify-between py-4 px-4 md:px-6">
+          <Link to="/" className="text-2xl font-bold hover:text-slate-400 transition-colors">
+            BootCamp News
+          </Link>
+          <div className="flex items-center gap-4">
+            <div className="relative flex items-center max-w-md">
+              <div className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+              <div className="flex items-center justify-end gap-10 space-x-3">
+                <div
+                  onClick={toggleTheme}
+                  className="cursor-pointer duration-300 hover:scale-125 transition"
+                >
+                  {isDarkMode ? <MoonIcon className="h-5 w-5 opacity-80" /> : <SunIcon className="h-5 w-5 opacity-80" />}
                 </div>
+                <Link to="/search" className="text-lg font-semibold">
+                  <SearchIcon className="h-5 w-5 cursor-pointer hover:scale-125 transition" />
+                </Link>
+                <MenuIcon className="h-5 w-5 cursor-pointer hover:scale-125 transition" />
               </div>
             </div>
           </div>
-        </header>
+        </div>
+      </header>
       </div>
     </>
   );

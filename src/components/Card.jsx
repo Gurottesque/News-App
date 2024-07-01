@@ -16,5 +16,4 @@ const Card = ({ title, imagePath, body }) => {
     </section>
     );
   };
-  
 export default Card;
