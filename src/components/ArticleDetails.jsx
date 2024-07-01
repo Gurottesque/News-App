@@ -1,6 +1,7 @@
 import { useGetArticleQuery } from "../api/NewsApi";
 import ArticleDetailsRelated from "./ArticleDetailsRelated";
 
+// Se pasa la uri del articulo que se quiere mostrar
 function ArticleDetails({ articleUri }) {
   const uri = articleUri;
   const uriData = useGetArticleQuery({ uri });
@@ -13,55 +14,6 @@ function ArticleDetails({ articleUri }) {
     articleDataInfo = uriData.data[uri].info;
     /* console.log("uriDAta", articleDataInfo); */
   }
-
-
-function RenderArticleDetails() {
-  /* const params = useParams(); */
-  const [instances, setInstances] = useState([]);
-  const [article, setArticle] = useState([]);
-  const {articleUri} = useParams();
-
-  const [index, setIndex] = useState(0);
-
-  const [page, setPage] = useState(1);    
-
-  const nArticles = 5; // Numver of recomended articles to show
-
-  // Funcion para mostrar los tres resultados siguientes
-  const nextPage = () => {
-    if(index < (99-nArticles)){
-        setIndex(index+nArticles);
-    }else{
-        setIndex(0);
-        setPage(page+1);
-    }
-}
-
-// Funcion para mostrar los tres resultados anteriores
-const previousPage = () => {
-    if(index === 0 && page === 1){
-        return;
-    }
-    else if(index >= nArticles ){
-        setIndex(index-nArticles);
-    }else{
-        setIndex(99);
-        setPage(page-1);
-    }
-}
-
-  useEffect(() => {
-    const {data,error,isLoading} = useGetRelatedArticlesQuery({keyword: dataArticle.keywords[0], page});
-    if (data && data.articles && data.articles.results) {
-      const chunkSize = 4;
-      const chunks = [];
-      for (let i = index; i < index + nArticles; i += chunkSize) {
-        chunks.push(data.articles.results.slice(index, index + chunkSize));
-      }
-      setInstances(chunks);
-      /* console.log("Chunks:", chunks); */
-    }
-  }, [ index, page ]);
 
   return (
     <div>
