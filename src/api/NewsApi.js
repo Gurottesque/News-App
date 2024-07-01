@@ -10,7 +10,7 @@ export const NewsApi = createApi({
     endpoints: (builder) => ({
         getTrendingHome: builder.query({
             query: (pageNumber = 1, pageSize = 20) => 
-                `/event/minuteStreamArticles?apiKey=${API_KEY}`
+                `minuteStreamArticles?apiKey=${API_KEY}`
         }),
 
         searchArticle: builder.query({
