@@ -9,8 +9,6 @@ function ArticleDetails() {
   const uri = articleUri.articleUri;
   const uriData = useGetArticleQuery({ uri });
 
-  console.log(articleUri);
-
   let articleDataInfo; // Se declara articleDataInfoGlobalmente
 
   if (uriData.isLoading) {
