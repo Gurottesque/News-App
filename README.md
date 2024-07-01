@@ -1,12 +1,16 @@
 # TO DO:
 
--Estilizar pagina de buscado
+-Arreglar articulos en main: Joseph, richangel, Ramiro
 
--Estilizar inicio con articulos
+-Estilizar pagina de buscado: Burbano, juank, tania, juandrez, arce
 
--Agregar paginado tanto en el main como en la pagina de busqueda
+-Estilizar pagina de detalles: Mateo, isa, Franki, marin, sefase
 
--Agregar modo dia/noche
+-Agregar paginado tanto en el main como en la pagina de busqueda: Jeff, 
+
+-Agregar modo dia/noche: Juan cano, burbano, Sebastian, cristian
+
+-Lazy loading: Colicos, Camilo, Esteban, yeison
 
 
 
