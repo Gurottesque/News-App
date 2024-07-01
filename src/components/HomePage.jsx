@@ -1,45 +1,21 @@
-import CardHome from "./CardHome";
-import { useTheme } from "./ThemeContext";
+import { lazy, Suspense } from 'react'
+
+const CardHome = lazy( () => import("./CardHome"));
 
 function MainPage(){
-    
-    const { isDarkMode } = useTheme();
 
-    // Funcion para mostrar los tres resultados siguientes
-    const nextPage = () => {
-        if(index < 98){
-            setIndex(index+3);
-        }else{
-            setIndex(0);
-            setPage(page+1)
-        }
-    }
-    
-
-
-    // Funcion para mostrar los tres resultados anteriores
-    const previousPage = () => {
-        if(index === 0 && page === 1){
-            return;
-        }
-        else if(index > 2){
-            setIndex(index-3);
-        }else{
-            setIndex(99);
-            setPage(page-1)
-        }
-    }
     return (
     <>
-        <div className={`${isDarkMode ? "bg-slate-950 text-slate-200" : "bg-gray-100  text-slate-950"} p-4 transition-colors`}>
-        <h1 className="flex items-center justify-center text-5xl font-bold leading-loose">Breaking News</h1>
+    
+        <h1 className="flex items-center justify-center mt-5 text-5xl font-bold">Breaking News</h1>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 max-w-screen-2xl m-auto">
+        <Suspense  fallback={<div className="text-5xl animate-bounce text-center">...</div>} >
             <CardHome />
+        </Suspense>
         </div>
-        <div className="flex justify-center gap-20">
-            <button className="bg-black text-white rounded-md px-5 py-2 hover:bg-slate-300 hover:text-black transition-colors" onClick={previousPage}>Previous</button>
-            <button className="bg-black text-white rounded-md px-5 py-2 hover:bg-slate-300 hover:text-black transition-colors" onClick={nextPage}>Next</button>
-        </div>
+        <div className="flex justify-center gap-20 mb-5">
+            {/* <button className="bg-black text-white rounded-md px-5 py-2 hover:bg-slate-300 hover:text-black transition-colors" onClick={previousPage}>Previous</button>
+            <button className="bg-black text-white rounded-md px-5 py-2 hover:bg-slate-300 hover:text-black transition-colors" onClick={nextPage}>Next</button> */}
         </div>
     </>
     );

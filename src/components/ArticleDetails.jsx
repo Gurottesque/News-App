@@ -17,46 +17,51 @@ function ArticleDetails(articleUri) {
 
 function RenderArticleDetails() {
   /* const params = useParams(); */
-
-  const [index, setIndex] = useState(0);
-  const [page, setPage] = useState(1);
   const [instances, setInstances] = useState([]);
   const [article, setArticle] = useState([]);
   const {articleUri} = useParams();
 
+  const [index, setIndex] = useState(0);
+
+  const [page, setPage] = useState(1);    
+
+  const nArticles = 5; // Numver of recomended articles to show
+
   // Funcion para mostrar los tres resultados siguientes
   const nextPage = () => {
-    if (index < 96) {
-      setIndex(index + 4);
-    } else {
-      setIndex(0);
-      setPage(page + 1);
+    if(index < (99-nArticles)){
+        setIndex(index+nArticles);
+    }else{
+        setIndex(0);
+        setPage(page+1);
     }
-  };
+}
 
-  // Funcion para mostrar los tres resultados anteriores
-  const previousPage = () => {
-    if (index > 0) {
-      setIndex(index - 4);
-    } else {
-      setIndex(96);
-      setPage(page - 1);
+// Funcion para mostrar los tres resultados anteriores
+const previousPage = () => {
+    if(index === 0 && page === 1){
+        return;
     }
-  };
-
+    else if(index >= nArticles ){
+        setIndex(index-nArticles);
+    }else{
+        setIndex(99);
+        setPage(page-1);
+    }
+}
 
   useEffect(() => {
-    const {data,error,isLoading} = useGetRelatedArticlesQuery({keyword: dataArticle.keywords[0]});
+    const {data,error,isLoading} = useGetRelatedArticlesQuery({keyword: dataArticle.keywords[0], page});
     if (data && data.articles && data.articles.results) {
       const chunkSize = 4;
       const chunks = [];
-      for (let i = 0; i < data.articles.results.length; i += chunkSize) {
-        chunks.push(data.articles.results.slice(i, i + chunkSize));
+      for (let i = index; i < index + nArticles; i += chunkSize) {
+        chunks.push(data.articles.results.slice(index, index + chunkSize));
       }
       setInstances(chunks);
       /* console.log("Chunks:", chunks); */
     }
-  }, []);
+  }, [ index, page ]);
 
   
   useEffect(() => {
