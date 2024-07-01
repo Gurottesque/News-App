@@ -7,7 +7,7 @@ function Colaborators({ colaborator }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
+    const GITHUB_TOKEN = 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;
 
     const fetchUserData = async () => {
       try {
