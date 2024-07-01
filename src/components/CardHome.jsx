@@ -37,12 +37,10 @@ const CardHome = () => {
   const { data, error, isLoading } = useGetTrendingHomeQuery({ page });
 
   useEffect(() => {
-    console.log(data);
     setArticles(
       data?.recentActivityArticles.activity.slice(index, index + nArticles)
     );
   }, [isLoading, data, index, page]);
-  console.log(articles);
   return (
     <>
       {articles !== undefined
