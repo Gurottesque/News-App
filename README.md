@@ -1,12 +1,22 @@
-# TO DO:
+# NEWS APP 
 
--Agregar paginado tanto en el main como en la pagina de busqueda: Jeff, 
+This application show the news using the News API https://www.newsapi.ai/documentation?tab=introduction
 
--Agregar modo dia/noche: Juan cano, burbano, Sebastian, cristian
+To install locally follow the next steps
 
--Lazy loading: Colicos, Camilo, Esteban, yeison
+Clone the repository
 
+`https://github.com/Gurottesque/News-App`
 
+Install the dependencies
+
+`npm install`
+
+Run the project
+
+`npm run dev`
+
+Otherwise, you can see the app through this link:
 
 # Navegation Bar
 
