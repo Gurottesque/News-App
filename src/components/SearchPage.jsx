@@ -59,17 +59,16 @@ function SearchBar({ setSearchResults, searchTerm, setSearchTerm }) {
 }
 
 function SearchPage() {
-  const [searchResults, setSearchResults] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [category, setCategory] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [category, setCategory] = useState('');
+    const { isDarkMode } = useTheme();
 
-  const [index, setIndex] = useState(0);
+    const [index, setIndex] = useState(0);
 
-  const [page, setPage] = useState(1);
+    const [page, setPage] = useState(1);    
 
-  const nArticles = 9;
 
-  const { isDarkMode } = useTheme();
 
   // Funcion para mostrar los tres resultados siguientes
   const nextPage = () => {
@@ -133,26 +132,17 @@ function SearchPage() {
       {error && <div>Error: {error}</div>}
       {data?.articles?.results && (
         <SearchResults results={data.articles.results} />
+              </div>
+        <button className="previousPage" onClick={previousPage}>previous</button>
+        <button className="nextPage" onClick={nextPage}>next</button>
+      </div>
       )}
     </>
   );
 }
 
 function SearchResults({ results }) {
-  const [category, setCategory] = useState("");
-  const { data, error, isLoading } = useSearchArticleQuery({ category });
-  const { isDarkMode } = useTheme();
 
-  // Funcion para mostrar los tres resultados anteriores
-  const previousPage = () => {
-    if (index === 0 && page === 1) {
-      return;
-    } else if (index > 2) {
-      setIndex(index - 3);
-    } else {
-      setIndex(99);
-      setPage(page - 1);
-    }
     return (
         <div className="grid grid-cols-3">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-1 p-10 max-w-screen-2xl m-auto col-span-3">
