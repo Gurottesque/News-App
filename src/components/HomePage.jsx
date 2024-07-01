@@ -1,4 +1,6 @@
 import CardHome from "./CardHome";
+import { useTheme } from "./ThemeContext";
+
 function MainPage(){
     
     const { isDarkMode } = useTheme();
