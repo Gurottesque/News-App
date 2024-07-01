@@ -33,7 +33,7 @@ function SearchPage() {
     const [page, setPage] = useState(1);    
 
     const nArticles = 9;
-    
+    console.log(index, page)
     // Funcion para mostrar los tres resultados siguientes
     const nextPage = () => {
         if(index <= (99-nArticles)){
@@ -62,6 +62,8 @@ function SearchPage() {
     // const handleSetSearchResults = useCallback() => { // Linea cambiada para implementar paginado
     const handleSetSearchResults = useEffect(() => {
         if (!isLoading && data && data.articles.results){
+            console.log("SLICING")
+            console.log("SearchResults: ", searchResults)
             setSearchResults(data.articles.results.slice(index, index+nArticles));
         } else {
           setSearchResults([]); // reset search results
@@ -69,24 +71,27 @@ function SearchPage() {
     }, [data, index, page]);
 
     return (
+      <div>
+          <div>
+              <div className='flex justify-center items-center '>
+                  <h1 className= "text-xl font-bold mb-4 mt-4 mr-2"> Filters</h1>
+                  <CategorySelection setCategory={setCategory} categories={NEWS_CATEGORIES} />
+                  <SearchBar className="flex" setSearchResults={handleSetSearchResults} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+              </div>
+              {
+          isLoading && <div>Loading...</div>
+        }
+        {
+          error && <div>Error: {error}</div>
 
-        <>
-            <div className='flex justify-center items-center '>
-                <h1 className= "text-xl font-bold mb-4 mt-4 mr-2"> Filters</h1>
-                <CategorySelection setCategory={setCategory} categories={NEWS_CATEGORIES} />
-                <SearchBar className="flex" setSearchResults={handleSetSearchResults} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-            </div>
-            {
-        isLoading && <div>Loading...</div>
-      }
-      {
-        error && <div>Error: {error}</div>
-        
-      }
-      {
-        data?.articles?.results && <SearchResults results={data.articles.results} />
-      }
-        </>
+        }
+        {
+          data?.articles?.results && <SearchResults results={searchResults} />
+        }
+      </div>
+        <button className="previousPage" onClick={previousPage}>previous</button>
+        <button className="nextPage" onClick={nextPage}>next</button>
+      </div>
 
     );
 }
