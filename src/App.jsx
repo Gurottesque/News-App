@@ -7,7 +7,6 @@ import SearchPage from "./components/SearchPage"
 import ArticleDetails from "./components/ArticleDetails"
 
 
-
 function App() {
 
   return (
