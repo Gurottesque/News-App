@@ -1,7 +1,7 @@
 
 const Card = ({ title, imagePath, body }) => {
     return (
-    <section className="container mx-auto p-6 md:p-12 transform duration-500">
+    <section className="container bg-gray-100 min-w-[300px] mx-auto p-6 md:p-12 transform duration-500">
         <article className="shadow-lg mx-auto relative max-w-sm group cursor-pointer">
             <div className="overflow-hidden aspect-w-16 aspect-h-9 ">
                 <img className="w-full h-auto transform hover:scale-110 duration-200 " src={imagePath} alt="" />

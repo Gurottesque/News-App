@@ -44,7 +44,6 @@ function RenderArticleDetails({ articleUri }) {
   const keyword = "plane";
   const { data, error, isLoading } = useGetRelatedArticlesQuery({ keyword });
   console.log(data);
-   
 
   useEffect(() => {
     if (data && data.articles && data.articles.results) {
@@ -84,23 +83,23 @@ function RenderArticleDetails({ articleUri }) {
           </div>
         </div>
       </div>
-      <div>
+      <div className="mt-10 mb-10">
         <div className="w-full flex flex-row justify-center gap-12 mb-4 mt-12">
-          <button
-            className="p-3 px-8 bg-slate-300 rounded-lg"
-            onClick={() => previousPage()}
-          >
-            Prev
-          </button>
-          <button
-            className="p-3 px-8 bg-blue-500 rounded-lg"
-            onClick={() => nextPage()}
-          >
-            Next
-          </button>
-        </div>
+            <button
+              className="p-3 px-8 bg-slate-300 rounded-lg"
+              onClick={() => previousPage()}
+            >
+              Prev
+            </button>
+            <button
+              className="p-3 px-8 bg-blue-500 rounded-lg"
+              onClick={() => nextPage()}
+            >
+              Next
+            </button>
+          </div>
         {instances.length > 0 && (
-          <div className="w-full bg-cyan-200 flex flex-row justify-center">
+          <div className="w-full bg-gray-100 flex flex-col justify-center md:flex-row max-w-[1500px] mx-auto">
             {instances[Math.floor(index / 4)].map((relatedArticle, idx) => (
               <Card
                 key={idx}
@@ -113,6 +112,7 @@ function RenderArticleDetails({ articleUri }) {
             ))}
           </div>
         )}
+        
       </div>
     </div>
   );

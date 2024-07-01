@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
-const API_KEY = '4b7e322f-c7f0-4fce-ab5d-466cdc5398aa'
+const API_KEY = 'a5135f92-05f6-415a-ab3b-cbe237d78031'
 export const NewsApi = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({
@@ -19,8 +19,7 @@ export const NewsApi = createApi({
         }),
 
         getRelatedArticles: builder.query({
-            query: (query) => 
-                `suggestConceptsFast?prefix=${query}&lang=eng&apiKey=${API_KEY}&q=${query}`
+            query: ({ keyword }) => `article/getArticles?keyword=${keyword}&apiKey=${API_KEY}`
         }),
 
         getArticle: builder.query({
