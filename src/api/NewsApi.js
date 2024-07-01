@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
-const API_KEY = '4b7e322f-c7f0-4fce-ab5d-466cdc5398aa'
+const API_KEY = '8fd6a5e6-077b-4ba1-a4f2-253fd2ed05d4'
 export const NewsApi = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({
@@ -9,22 +9,22 @@ export const NewsApi = createApi({
 
     endpoints: (builder) => ({
         getTrendingHome: builder.query({
-            query: (pageNumber = 1, pageSize = 20) => 
-                `minuteStreamArticles?apiKey=${API_KEY}`
+            query: ({page}) => 
+                `minuteStreamArticles?apiKey=${API_KEY}&page=${page}`
         }),
 
         searchArticle: builder.query({
-            query: ({keyword, category}) => 
-                `article/getArticles?keyword=${keyword}&apiKey=${API_KEY}&categoryUri=${category}`
+            query: ({keyword, category, page}) => 
+                `article/getArticles?keyword=${keyword}&apiKey=${API_KEY}&categoryUri=${category}&page=${page}`
         }),
 
         getRelatedArticles: builder.query({
-            query: (query) => 
-                `suggestConceptsFast?prefix=${query}&lang=eng&apiKey=${API_KEY}&q=${query}`
+            query: ({ query, page }) => 
+                `suggestConceptsFast?prefix=${query}&lang=eng&apiKey=${API_KEY}&q=${query}&page=${page}`
         }),
 
         getArticle: builder.query({
-            query: (uri) => 
+            query: ({uri}) => 
                 `article/getArticle?apiKey=${API_KEY}&articleUri=${uri}`
         })
     })
