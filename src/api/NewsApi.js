@@ -23,11 +23,11 @@ export const NewsApi = createApi({
         }),
 
         getArticle: builder.query({
-            query: (uri) => 
+            query: ({uri}) => 
                 `article/getArticle?apiKey=${API_KEY}&articleUri=${uri}`
         })
     })
 })
 
 
-export const { useGetTrendingHomeQuery, useSearchArticleQuery, useGetRelatedArticlesQuery } = NewsApi;
+export const { useGetTrendingHomeQuery, useSearchArticleQuery, useGetRelatedArticlesQuery, useGetArticleQuery } = NewsApi;
