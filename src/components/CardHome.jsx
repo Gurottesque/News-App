@@ -21,7 +21,7 @@ const CardHome = () => {
                         <img className="w-full h-auto transform hover:scale-110 duration-200" src={article.image} alt="" />
                     </div>
                     <div className="p-4 my-auto pb-8 overflow-hidden">
-                        <p className="text-2xl font-semibold text-gray-800 mt-2">{article.title}</p>
+                        <p className="text-2xl font-semibold  mt-2">{article.title}</p>
                     </div>
                 </article>
             </section>

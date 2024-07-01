@@ -10,7 +10,7 @@ function Footer() {
     <div className={`${ isDarkMode ? "text-slate-200 bg-slate-800 transition duration-200" : "bg-white  text-slate-850 transition duration-200"
     } py-4 px-2`}>
       <footer className= {`${
-          isDarkMode ? "text-slate-200 bg-slate-850 transition duration-200" : "bg-stale-200 text-slate-850 transition duration-200"
+          isDarkMode ? "text-slate-200 bg-slate-950 transition duration-200" : "bg-stale-200 text-slate-850 transition duration-200"
         } py-4 px-2 rounded-lg items-center`}>
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
           <div className="flex space-x-0 mb-4 md:mb-0 \space-y-4 ">
