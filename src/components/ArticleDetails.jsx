@@ -1,10 +1,15 @@
+import { useParams } from "react-router-dom";
 import { useGetArticleQuery } from "../api/NewsApi";
 import ArticleDetailsRelated from "./ArticleDetailsRelated";
+import { GiConsoleController } from "react-icons/gi";
 
 // Se pasa la uri del articulo que se quiere mostrar
-function ArticleDetails({ articleUri }) {
-  const uri = articleUri;
+function ArticleDetails() {
+  const articleUri = useParams();
+  const uri = articleUri.articleUri;
   const uriData = useGetArticleQuery({ uri });
+
+  console.log(articleUri);
 
   let articleDataInfo; // Se declara articleDataInfoGlobalmente
 

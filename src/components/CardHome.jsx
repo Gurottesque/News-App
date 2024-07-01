@@ -49,7 +49,7 @@ const CardHome = () => {
         ? articles.map((article) => (
             <div>
               <div>
-                <Link to={`/about/${article.uri}`} key={article.uri}>
+                <Link to={`/about/${article.uri}`} key={article.uri}> 
                   <section key={article.uri} className="flex flex-1">
                     <article className="shadow-lg mx-auto relative max-w-sm group cursor-pointer">
                       <div className="overflow-hidden">
@@ -62,7 +62,7 @@ const CardHome = () => {
                         </LazyLoad>
                       </div>
                       <div className="p-4 my-auto pb-8 overflow-hidden">
-                        <p className="text-2xl font-semibold text-gray-800 mt-2">
+                        <p className="text-2xl font-semibold mt-2">
                           {article.title}
                         </p>
                       </div>
