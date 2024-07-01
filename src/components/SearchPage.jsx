@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useSearchArticleQuery } from "../api/NewsApi"
 import { NEWS_CATEGORIES } from '../constants/categories'; 
+import Card from './Card';
 
 function CategorySelection({ setCategory, categories }) {
     return (
@@ -43,7 +44,8 @@ function SearchPage() {
 
     return (
         <>
-            <div className='flex justify-center items-center'>
+            <div className='flex justify-center items-center '>
+                <h1 className= "text-xl font-bold mb-4 mt-4 mr-2"> Filters</h1>
                 <CategorySelection setCategory={setCategory} categories={NEWS_CATEGORIES} />
                 <SearchBar className="flex" setSearchResults={handleSetSearchResults} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             </div>
@@ -64,11 +66,22 @@ function SearchPage() {
 
 
 function SearchResults({ results }) {
+    console.log(results)
+    const [category, setCategory] = useState('');
+    const { data, error, isLoading } = useSearchArticleQuery({category });
+
     return (
-        <div>
-            {results && results.map((result) => (
-                <div key={result.uri}>{result.title}</div>
-            ))}
+        <div className="grid grid-cols-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-1 p-10 max-w-screen-2xl m-auto col-span-3">
+             {results && results.map((result) => (
+               <div key = {result.uri} >
+                 <Card
+                 title= {`${result.title}`}
+                 imagePath= {`${result.image}`}
+                 body={null} />
+               </div>   
+               ))}
+           </div>
         </div>
     );
 }
