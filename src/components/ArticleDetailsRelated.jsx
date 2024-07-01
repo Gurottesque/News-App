@@ -1,19 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useGetRelatedArticlesQuery } from "../api/NewsApi";
 import Card from "./Card";
 
 function ArticleDetailsRelated({ keyword }) {
-
   const [index, setIndex] = useState(0);
-  const [page, setPage] = useState(1);
   const [instances, setInstances] = useState([]);
+  const navigate = useNavigate();
 
-  // Define los keywords que quieres buscar
-  /* const keyword = articleDataInfo.title; */
-  const { data, error, isLoading } = useGetRelatedArticlesQuery("Sports");
-  console.log(data);
-
-  
+  const { data, error, isLoading } = useGetRelatedArticlesQuery(keyword);
 
   useEffect(() => {
     if (data && data.articles && data.articles.results) {
@@ -23,62 +18,53 @@ function ArticleDetailsRelated({ keyword }) {
         chunks.push(data.articles.results.slice(i, i + chunkSize));
       }
       setInstances(chunks);
-      console.log("Chunks:", chunks);
     }
   }, [data]);
 
-  // Funcion para mostrar los tres resultados siguientes
   const nextPage = () => {
-    if (index < 96) {
-      setIndex(index + 4);
-    } else {
-      setIndex(0);
-      setPage(page + 1);
-    }
+    setIndex((prevIndex) => (prevIndex + 4) % data.articles.results.length);
   };
 
-  // Funcion para mostrar los tres resultados anteriores
   const previousPage = () => {
-    if (index > 0) {
-      setIndex(index - 4);
-    } else {
-      setIndex(96);
-      setPage(page - 1);
-    }
+    setIndex((prevIndex) => (prevIndex - 4 + data.articles.results.length) % data.articles.results.length);
   };
+
+  const handleCardClick = (articleUri) => {
+    navigate(`/article/${articleUri}`);
+  };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error loading related articles</div>;
+  }
 
   return (
     <div className="w-full flex flex-row justify-center gap-12 mb-4 mt-12">
       <div>
         <div className="w-full flex flex-row justify-center gap-12 mb-4 mt-12">
-          <button
-            className="p-3 px-8 bg-slate-300 rounded-lg"
-            onClick={() => previousPage()}
-          >
+          <button className="p-3 px-8 bg-slate-300 rounded-lg" onClick={previousPage}>
             Prev
           </button>
-          <button
-            className="p-3 px-8 bg-blue-500 rounded-lg"
-            onClick={() => nextPage()}
-          >
+          <button className="p-3 px-8 bg-blue-500 rounded-lg" onClick={nextPage}>
             Next
           </button>
         </div>
         {instances.length > 0 && (
-            <div className="w-full bg-cyan-200 flex flex-row justify-center">
-              {instances[Math.floor(index / 4)].map((relatedArticle, idx) => (
+          <div className="w-full flex flex-row justify-center">
+            {instances[Math.floor(index / 4)].map((relatedArticle, idx) => (
+              <div key={idx} onClick={() => handleCardClick(relatedArticle.uri)}>
                 <Card
-                  key={idx}
-                  imagePath={
-                    relatedArticle.image || "https://via.placeholder.com/200"
-                  }
+                  imagePath={relatedArticle.image || "https://via.placeholder.com/200"}
                   title={relatedArticle.title}
                   body={relatedArticle.body}
                 />
-              ))}
-            </div>
-          )}
-          
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

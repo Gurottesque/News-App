@@ -1,24 +1,20 @@
 import { useParams } from "react-router-dom";
 import { useGetArticleQuery } from "../api/NewsApi";
 import ArticleDetailsRelated from "./ArticleDetailsRelated";
-import { GiConsoleController } from "react-icons/gi";
 
-// Se pasa la uri del articulo que se quiere mostrar
 function ArticleDetails() {
-  const articleUri = useParams();
-  const uri = articleUri.articleUri;
-  const uriData = useGetArticleQuery({ uri });
+  const { articleUri } = useParams();
+  const { data: uriData, isLoading, isError } = useGetArticleQuery({ uri: articleUri });
 
-  console.log(articleUri);
-
-  let articleDataInfo; // Se declara articleDataInfoGlobalmente
-
-  if (uriData.isLoading) {
+  if (isLoading) {
     return <h1>Loading...</h1>;
-  } else {
-    articleDataInfo = uriData.data[uri].info;
-    /* console.log("uriDAta", articleDataInfo); */
   }
+
+  if (isError || !uriData || !uriData[articleUri]) {
+    return <h1>Error loading article</h1>;
+  }
+
+  const articleDataInfo = uriData[articleUri].info;
 
   return (
     <div>
@@ -38,7 +34,6 @@ function ArticleDetails() {
           </div>
         </div>
       </div>
-
       <ArticleDetailsRelated keyword={articleDataInfo.title} />
     </div>
   );
