@@ -1,3 +1,4 @@
+
 const Card = ({ title, imagePath, body }) => {
     return (
     <section className="container mx-auto p-6 md:p-12 transform duration-500">
@@ -15,5 +16,4 @@ const Card = ({ title, imagePath, body }) => {
     </section>
     );
   };
-  
-  export default Card;
+export default Card;

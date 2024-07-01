@@ -1,6 +1,6 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSearchArticleQuery } from "../api/NewsApi"
-import { NEWS_CATEGORIES } from '../constants/constants';
+import { NEWS_CATEGORIES } from '../constants/categories'; 
 
 function CategorySelection({ setCategory, categories }) {
     return (
@@ -12,6 +12,10 @@ function CategorySelection({ setCategory, categories }) {
     );
 }
 
+
+
+
+
 function SearchBar({ setSearchResults, searchTerm, setSearchTerm }) {
     return (
         <>
@@ -20,6 +24,44 @@ function SearchBar({ setSearchResults, searchTerm, setSearchTerm }) {
         </>
     );
 }
+
+
+function SearchPage() {
+    const [searchResults, setSearchResults] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [category, setCategory] = useState('');
+
+    const { data, error, isLoading } = useSearchArticleQuery({ keyword: searchTerm, category });
+
+    const handleSetSearchResults = useCallback(() => {
+        if (!isLoading && data && data.articles.results){
+            setSearchResults(data.articles.results);
+        } else {
+          setSearchResults([]); // reset search results
+        }
+    }, [data]);
+
+    return (
+        <>
+            <div className='flex justify-center items-center'>
+                <CategorySelection setCategory={setCategory} categories={NEWS_CATEGORIES} />
+                <SearchBar className="flex" setSearchResults={handleSetSearchResults} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+            </div>
+            {
+        isLoading && <div>Loading...</div>
+      }
+      {
+        error && <div>Error: {error}</div>
+        
+      }
+      {
+        data?.articles?.results && <SearchResults results={data.articles.results} />
+      }
+        </>
+    );
+}
+
+
 
 function SearchResults({ results }) {
     return (
@@ -31,29 +73,6 @@ function SearchResults({ results }) {
     );
 }
 
-function SearchPage() {
-    const [searchResults, setSearchResults] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('');
-    const [category, setCategory] = useState('');
 
-    const { data, error, isLoading } = useSearchArticleQuery({ keyword: searchTerm, category });
-
-    const handleSetSearchResults = () => {
-        if (data) {
-            console.log(data)
-            setSearchResults(data.articles.results);
-        }
-    };
-
-    return (
-        <>
-            <div className='flex justify-center items-center'>
-                <CategorySelection setCategory={setCategory} categories={NEWS_CATEGORIES} />
-                <SearchBar className="flex" setSearchResults={handleSetSearchResults} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-            </div>
-            <SearchResults results={searchResults} />
-        </>
-    );
-}
 
 export default SearchPage;

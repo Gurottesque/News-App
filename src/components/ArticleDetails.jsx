@@ -1,7 +1,19 @@
-import { useGetRelatedArticlesQuery, useGetArticleQuery} from "../api/NewsApi";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
+import { useParams } from "react-router-dom";
+import { useGetRelatedArticlesQuery } from "../api/NewsApi";
 import { useEffect, useState } from "react";
 import Card from "./Card";
-import { useParams } from "react-router-dom";
+
+function ArticleDetails(articleUri) {
+  return (
+    <>
+      <Navbar />
+      <RenderArticleDetails articleUri={articleUri}/>
+      <Footer />
+    </>
+  );
+}
 
 function RenderArticleDetails() {
   /* const params = useParams(); */
@@ -110,14 +122,6 @@ function RenderArticleDetails() {
         )}
       </div>
     </div>
-  );
-}
-
-function ArticleDetails(articleUri) {
-  return (
-    <>
-      <RenderArticleDetails articleUri={articleUri}/>
-    </>
   );
 }
 
