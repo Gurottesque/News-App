@@ -95,11 +95,11 @@ function Navbar() {
   return (
     <>
       <div className={`${
-          isDarkMode ? "text-slate-200 bg-slate-800 transition duration-200" : "bg-white dark:bg-slate-800  text-slate-850 transition duration-200"
+          isDarkMode ? "text-slate-200 bg-slate-800 transition duration-200" : "bg-white text-slate-850 transition duration-200"
         } py-4 px-2`} >
         <header
         className={`${
-          isDarkMode ? "text-slate-200 bg-slate-950 transition duration-200" : "bg-gray-950 dark:bg-slate-950 dark:text-slate-200 text-slate-200 transition duration-200"
+          isDarkMode ? "text-slate-200 bg-slate-950 transition duration-200" : "bg-gray-950 text-slate-200 transition duration-200"
         } rounded-xl md:w-500`}
       >
         <div className="container mx-auto flex items-center justify-between py-4 px-4 md:px-6">
