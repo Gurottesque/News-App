@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useGetRelatedArticlesQuery } from "../api/NewsApi";
 import Card from "./Card";
+import { Link } from "react-router-dom";
 
 function ArticleDetailsRelated({ keyword }) {
-
+  console.log("Keyword:", typeof(keyword));
   const [index, setIndex] = useState(0);
   const [page, setPage] = useState(1);
   const [instances, setInstances] = useState([]);
 
   // Define los keywords que quieres buscar
   /* const keyword = articleDataInfo.title; */
-  const { data, error, isLoading } = useGetRelatedArticlesQuery("Sports");
-  console.log(data);
-
-  
+  const { data, error, isLoading } = useGetRelatedArticlesQuery(keyword);
 
   useEffect(() => {
     if (data && data.articles && data.articles.results) {
@@ -67,6 +65,7 @@ function ArticleDetailsRelated({ keyword }) {
         {instances.length > 0 && (
             <div className="w-full bg-cyan-200 flex flex-row justify-center">
               {instances[Math.floor(index / 4)].map((relatedArticle, idx) => (
+                <Link to={`/about/${relatedArticle.uri}`} key={relatedArticle.uri}>
                 <Card
                   key={idx}
                   imagePath={
@@ -75,6 +74,7 @@ function ArticleDetailsRelated({ keyword }) {
                   title={relatedArticle.title}
                   body={relatedArticle.body}
                 />
+                </Link>
               ))}
             </div>
           )}

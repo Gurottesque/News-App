@@ -42,6 +42,7 @@ const CardHome = () => {
       data?.recentActivityArticles.activity.slice(index, index + nArticles)
     );
   }, [isLoading, data, index, page]);
+  
   console.log(articles);
   return (
     <>
