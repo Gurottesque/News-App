@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
-const API_KEY = '8fd6a5e6-077b-4ba1-a4f2-253fd2ed05d4'
+const API_KEY = '2a524527-18c3-44db-82c5-ed5a4f7bb8af'
 export const NewsApi = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({
