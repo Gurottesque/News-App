@@ -16,7 +16,7 @@ Run the project
 
 `npm run dev`
 
-Otherwise, you can see the app through this link:
+Otherwise, you can see the app through this link: https://bootcamp-news.netlify.app
 
 # Navegation Bar
 

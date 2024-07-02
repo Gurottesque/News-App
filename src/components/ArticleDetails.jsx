@@ -6,7 +6,11 @@ function ArticleDetails() {
   const { articleUri } = useParams();
   const { data: uriData, isLoading, isError } = useGetArticleQuery({ uri: articleUri });
 
+
   if (isLoading) {
+
+  let articleDataInfo; // Se declara articleDataInfoGlobalmente
+
     return <h1>Loading...</h1>;
   }
 

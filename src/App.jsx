@@ -3,10 +3,6 @@ import { lazy, Suspense } from 'react';
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 
-const HomePage = lazy(() => import("./components/HomePage"));
-const ArticleDetails = lazy(() => import("./components/ArticleDetails"));
-const SearchPage = lazy(() => import("./components/SearchPage"));
-
 function App() {
   return (
     <>

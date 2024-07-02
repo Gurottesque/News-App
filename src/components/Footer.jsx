@@ -14,10 +14,10 @@ function Footer() {
         } py-4 px-2 rounded-lg items-center`}>
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
           <div className="flex space-x-0 mb-4 md:mb-0 \space-y-4 ">
-          <a href="#" onClick={() => setIsModalOpen(true)}>About</a>
-          <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-            <a className="hover:text-sky-700 pl-5 pr-5">Contact</a>
-            <a className="hover:text-sky-700">Privacy</a>
+            <a href="#" className="hover:text-sky-700" onClick={() => setIsModalOpen(true)}>About</a>
+            <a href="#" className="hover:text-sky-700 pl-5 pr-5">Contact</a>
+            <a href="#" className="hover:text-sky-700">Privacy</a>
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
           </div>
           <div className="text-center mb-4 md:mb-0">
             &copy; 2024 News Hub. All rights reserved.
