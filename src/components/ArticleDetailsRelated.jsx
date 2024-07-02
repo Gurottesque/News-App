@@ -31,7 +31,9 @@ function ArticleDetailsRelated({ keyword }) {
   };
 
   const handleCardClick = (articleUri) => {
-    navigate(`/about/${articleUri}`);
+
+    navigate(`/article/${articleUri}`);
+
   };
 
   if (isLoading) {
